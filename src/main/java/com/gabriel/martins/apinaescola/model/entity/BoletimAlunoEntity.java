@@ -1,20 +1,19 @@
 package com.gabriel.martins.apinaescola.model.entity;
 
-import com.gabriel.martins.apinaescola.model.enums.STATUS_CHAMADA;
+import com.gabriel.martins.apinaescola.model.enums.STATUS_BOLETIM;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-@Table(name = "aluno_chamada")
-public class AlunoChamadaEntity implements Serializable {
+@Table(name = "boletim_aluno")
+public class BoletimAlunoEntity implements Serializable {
     @Id
-    @SequenceGenerator(name = "generator", sequenceName = "seq_aluno_chamada_id", allocationSize = 1)
+    @SequenceGenerator(name = "generator", sequenceName = "seq_boletim_aluno_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @Basic(optional = false)
-    @Column(name = "id", nullable = false, columnDefinition = "BIGINT DEFAULT NEXTVAL('seq_aluno_chamada_id')")
+    @Column(name = "id", nullable = false, columnDefinition = "BIGINT DEFAULT NEXTVAL('seq_boletim_aluno_id')")
     private Long id;
 
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
@@ -22,16 +21,13 @@ public class AlunoChamadaEntity implements Serializable {
     private AlunoEntity aluno;
 
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-    @JoinColumn(name = "fk_chamada_id", columnDefinition = "bigint")
-    private ChamadaEntity chamada;
+    @JoinColumn(name = "fk_boletim_id", columnDefinition = "bigint")
+    private BoletimEntity boletim;
 
-    @Column(name = "turno")
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     @Expose
-    private STATUS_CHAMADA status;
-
-    @Column(name = "falta", nullable = false)
-    private Integer falta;
+    private STATUS_BOLETIM status;
 
     //GETTERS and SETTERS
     public Long getId() {
@@ -50,28 +46,20 @@ public class AlunoChamadaEntity implements Serializable {
         this.aluno = aluno;
     }
 
-    public ChamadaEntity getChamada() {
-        return chamada;
+    public BoletimEntity getBoletim() {
+        return boletim;
     }
 
-    public void setChamada(ChamadaEntity chamada) {
-        this.chamada = chamada;
+    public void setBoletim(BoletimEntity boletim) {
+        this.boletim = boletim;
     }
 
-    public STATUS_CHAMADA getStatus() {
+    public STATUS_BOLETIM getStatus() {
         return status;
     }
 
-    public void setStatus(STATUS_CHAMADA status) {
+    public void setStatus(STATUS_BOLETIM status) {
         this.status = status;
-    }
-
-    public Integer getFalta() {
-        return falta;
-    }
-
-    public void setFalta(Integer falta) {
-        this.falta = falta;
     }
     //END - GETTERS and SETTERS
 
@@ -79,24 +67,22 @@ public class AlunoChamadaEntity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AlunoChamadaEntity)) return false;
+        if (!(o instanceof BoletimAlunoEntity)) return false;
 
-        AlunoChamadaEntity that = (AlunoChamadaEntity) o;
+        BoletimAlunoEntity that = (BoletimAlunoEntity) o;
 
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
         if (getAluno() != null ? !getAluno().equals(that.getAluno()) : that.getAluno() != null) return false;
-        if (getChamada() != null ? !getChamada().equals(that.getChamada()) : that.getChamada() != null) return false;
-        if (getStatus() != that.getStatus()) return false;
-        return getFalta() != null ? getFalta().equals(that.getFalta()) : that.getFalta() == null;
+        if (getBoletim() != null ? !getBoletim().equals(that.getBoletim()) : that.getBoletim() != null) return false;
+        return getStatus() == that.getStatus();
     }
 
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (getAluno() != null ? getAluno().hashCode() : 0);
-        result = 31 * result + (getChamada() != null ? getChamada().hashCode() : 0);
+        result = 31 * result + (getBoletim() != null ? getBoletim().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
-        result = 31 * result + (getFalta() != null ? getFalta().hashCode() : 0);
         return result;
     }
     //END - HASH and EQUALS

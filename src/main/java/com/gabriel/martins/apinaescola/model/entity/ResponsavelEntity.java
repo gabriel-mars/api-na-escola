@@ -53,15 +53,20 @@ public class ResponsavelEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ResponsavelEntity)) return false;
+
         ResponsavelEntity that = (ResponsavelEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getUsuario(), that.getUsuario()) &&
-                Objects.equals(getFoto(), that.getFoto());
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getUsuario() != null ? !getUsuario().equals(that.getUsuario()) : that.getUsuario() != null) return false;
+        return getFoto() != null ? getFoto().equals(that.getFoto()) : that.getFoto() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUsuario(), getFoto());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getUsuario() != null ? getUsuario().hashCode() : 0);
+        result = 31 * result + (getFoto() != null ? getFoto().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }

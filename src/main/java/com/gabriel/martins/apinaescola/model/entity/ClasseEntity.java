@@ -127,21 +127,36 @@ public class ClasseEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ClasseEntity)) return false;
+
         ClasseEntity that = (ClasseEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getNome(), that.getNome()) &&
-                Objects.equals(getAnoClasse(), that.getAnoClasse()) &&
-                Objects.equals(getAnoLetivo(), that.getAnoLetivo()) &&
-                Objects.equals(getDescricao(), that.getDescricao()) &&
-                Objects.equals(getProfessor(), that.getProfessor()) &&
-                Objects.equals(getEscola(), that.getEscola()) &&
-                getTurno() == that.getTurno() &&
-                getStatus() == that.getStatus();
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getNome() != null ? !getNome().equals(that.getNome()) : that.getNome() != null) return false;
+        if (getAnoClasse() != null ? !getAnoClasse().equals(that.getAnoClasse()) : that.getAnoClasse() != null)
+            return false;
+        if (getAnoLetivo() != null ? !getAnoLetivo().equals(that.getAnoLetivo()) : that.getAnoLetivo() != null)
+            return false;
+        if (getDescricao() != null ? !getDescricao().equals(that.getDescricao()) : that.getDescricao() != null)
+            return false;
+        if (getProfessor() != null ? !getProfessor().equals(that.getProfessor()) : that.getProfessor() != null)
+            return false;
+        if (getEscola() != null ? !getEscola().equals(that.getEscola()) : that.getEscola() != null) return false;
+        if (getTurno() != that.getTurno()) return false;
+        return getStatus() == that.getStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNome(), getAnoClasse(), getAnoLetivo(), getDescricao(), getProfessor(), getEscola(), getTurno(), getStatus());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
+        result = 31 * result + (getAnoClasse() != null ? getAnoClasse().hashCode() : 0);
+        result = 31 * result + (getAnoLetivo() != null ? getAnoLetivo().hashCode() : 0);
+        result = 31 * result + (getDescricao() != null ? getDescricao().hashCode() : 0);
+        result = 31 * result + (getProfessor() != null ? getProfessor().hashCode() : 0);
+        result = 31 * result + (getEscola() != null ? getEscola().hashCode() : 0);
+        result = 31 * result + (getTurno() != null ? getTurno().hashCode() : 0);
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }

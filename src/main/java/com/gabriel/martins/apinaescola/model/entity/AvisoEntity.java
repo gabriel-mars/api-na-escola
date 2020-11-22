@@ -127,21 +127,36 @@ public class AvisoEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AvisoEntity)) return false;
+
         AvisoEntity that = (AvisoEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getTituloAviso(), that.getTituloAviso()) &&
-                Objects.equals(getAnoClasse(), that.getAnoClasse()) &&
-                Objects.equals(getClasse(), that.getClasse()) &&
-                Objects.equals(getEscola(), that.getEscola()) &&
-                Objects.equals(getDataAviso(), that.getDataAviso()) &&
-                getTipoAviso() == that.getTipoAviso() &&
-                Objects.equals(getConteudo(), that.getConteudo()) &&
-                Objects.equals(getAluno(), that.getAluno());
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getTituloAviso() != null ? !getTituloAviso().equals(that.getTituloAviso()) : that.getTituloAviso() != null)
+            return false;
+        if (getAnoClasse() != null ? !getAnoClasse().equals(that.getAnoClasse()) : that.getAnoClasse() != null)
+            return false;
+        if (getClasse() != null ? !getClasse().equals(that.getClasse()) : that.getClasse() != null) return false;
+        if (getEscola() != null ? !getEscola().equals(that.getEscola()) : that.getEscola() != null) return false;
+        if (getDataAviso() != null ? !getDataAviso().equals(that.getDataAviso()) : that.getDataAviso() != null)
+            return false;
+        if (getTipoAviso() != that.getTipoAviso()) return false;
+        if (getConteudo() != null ? !getConteudo().equals(that.getConteudo()) : that.getConteudo() != null)
+            return false;
+        return getAluno() != null ? getAluno().equals(that.getAluno()) : that.getAluno() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTituloAviso(), getAnoClasse(), getClasse(), getEscola(), getDataAviso(), getTipoAviso(), getConteudo(), getAluno());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getTituloAviso() != null ? getTituloAviso().hashCode() : 0);
+        result = 31 * result + (getAnoClasse() != null ? getAnoClasse().hashCode() : 0);
+        result = 31 * result + (getClasse() != null ? getClasse().hashCode() : 0);
+        result = 31 * result + (getEscola() != null ? getEscola().hashCode() : 0);
+        result = 31 * result + (getDataAviso() != null ? getDataAviso().hashCode() : 0);
+        result = 31 * result + (getTipoAviso() != null ? getTipoAviso().hashCode() : 0);
+        result = 31 * result + (getConteudo() != null ? getConteudo().hashCode() : 0);
+        result = 31 * result + (getAluno() != null ? getAluno().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }

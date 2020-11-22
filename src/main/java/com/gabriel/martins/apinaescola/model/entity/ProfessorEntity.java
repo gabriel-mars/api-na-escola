@@ -75,17 +75,25 @@ public class ProfessorEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ProfessorEntity)) return false;
+
         ProfessorEntity that = (ProfessorEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getUsuario(), that.getUsuario()) &&
-                Objects.equals(getCodigoGeradoEscola(), that.getCodigoGeradoEscola()) &&
-                Objects.equals(getEscola(), that.getEscola()) &&
-                Objects.equals(getSenhaGerada(), that.getSenhaGerada());
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getUsuario() != null ? !getUsuario().equals(that.getUsuario()) : that.getUsuario() != null) return false;
+        if (getCodigoGeradoEscola() != null ? !getCodigoGeradoEscola().equals(that.getCodigoGeradoEscola()) : that.getCodigoGeradoEscola() != null)
+            return false;
+        if (getEscola() != null ? !getEscola().equals(that.getEscola()) : that.getEscola() != null) return false;
+        return getSenhaGerada() != null ? getSenhaGerada().equals(that.getSenhaGerada()) : that.getSenhaGerada() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUsuario(), getCodigoGeradoEscola(), getEscola(), getSenhaGerada());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getUsuario() != null ? getUsuario().hashCode() : 0);
+        result = 31 * result + (getCodigoGeradoEscola() != null ? getCodigoGeradoEscola().hashCode() : 0);
+        result = 31 * result + (getEscola() != null ? getEscola().hashCode() : 0);
+        result = 31 * result + (getSenhaGerada() != null ? getSenhaGerada().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }

@@ -144,24 +144,42 @@ public class AlunoEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AlunoEntity)) return false;
+
         AlunoEntity that = (AlunoEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getDataNascimento(), that.getDataNascimento()) &&
-                Objects.equals(getMatricula(), that.getMatricula()) &&
-                Objects.equals(getDataMatricula(), that.getDataMatricula()) &&
-                Objects.equals(getCodigoGeradoEscola(), that.getCodigoGeradoEscola()) &&
-                Objects.equals(getNomePai(), that.getNomePai()) &&
-                Objects.equals(getNomeMae(), that.getNomeMae()) &&
-                Objects.equals(getSituacao(), that.getSituacao()) &&
-                Objects.equals(getJustificativa(), that.getJustificativa()) &&
-                Objects.equals(getEscola(), that.getEscola()) &&
-                Objects.equals(getResponsavel(), that.getResponsavel());
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getDataNascimento() != null ? !getDataNascimento().equals(that.getDataNascimento()) : that.getDataNascimento() != null)
+            return false;
+        if (getMatricula() != null ? !getMatricula().equals(that.getMatricula()) : that.getMatricula() != null)
+            return false;
+        if (getDataMatricula() != null ? !getDataMatricula().equals(that.getDataMatricula()) : that.getDataMatricula() != null)
+            return false;
+        if (getCodigoGeradoEscola() != null ? !getCodigoGeradoEscola().equals(that.getCodigoGeradoEscola()) : that.getCodigoGeradoEscola() != null)
+            return false;
+        if (getNomePai() != null ? !getNomePai().equals(that.getNomePai()) : that.getNomePai() != null) return false;
+        if (getNomeMae() != null ? !getNomeMae().equals(that.getNomeMae()) : that.getNomeMae() != null) return false;
+        if (getSituacao() != null ? !getSituacao().equals(that.getSituacao()) : that.getSituacao() != null)
+            return false;
+        if (getJustificativa() != null ? !getJustificativa().equals(that.getJustificativa()) : that.getJustificativa() != null)
+            return false;
+        if (getEscola() != null ? !getEscola().equals(that.getEscola()) : that.getEscola() != null) return false;
+        return getResponsavel() != null ? getResponsavel().equals(that.getResponsavel()) : that.getResponsavel() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDataNascimento(), getMatricula(), getDataMatricula(), getCodigoGeradoEscola(), getNomePai(), getNomeMae(), getSituacao(), getJustificativa(), getEscola(), getResponsavel());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getDataNascimento() != null ? getDataNascimento().hashCode() : 0);
+        result = 31 * result + (getMatricula() != null ? getMatricula().hashCode() : 0);
+        result = 31 * result + (getDataMatricula() != null ? getDataMatricula().hashCode() : 0);
+        result = 31 * result + (getCodigoGeradoEscola() != null ? getCodigoGeradoEscola().hashCode() : 0);
+        result = 31 * result + (getNomePai() != null ? getNomePai().hashCode() : 0);
+        result = 31 * result + (getNomeMae() != null ? getNomeMae().hashCode() : 0);
+        result = 31 * result + (getSituacao() != null ? getSituacao().hashCode() : 0);
+        result = 31 * result + (getJustificativa() != null ? getJustificativa().hashCode() : 0);
+        result = 31 * result + (getEscola() != null ? getEscola().hashCode() : 0);
+        result = 31 * result + (getResponsavel() != null ? getResponsavel().hashCode() : 0);
+        return result;
     }
-
     //END - HASH and EQUALS
 }

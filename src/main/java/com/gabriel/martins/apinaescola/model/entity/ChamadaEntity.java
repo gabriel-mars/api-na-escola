@@ -77,17 +77,25 @@ public class ChamadaEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ChamadaEntity)) return false;
+
         ChamadaEntity that = (ChamadaEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getEscola(), that.getEscola()) &&
-                Objects.equals(getClasse(), that.getClasse()) &&
-                Objects.equals(getDataChamada(), that.getDataChamada()) &&
-                Objects.equals(getChamadaFinalizada(), that.getChamadaFinalizada());
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getEscola() != null ? !getEscola().equals(that.getEscola()) : that.getEscola() != null) return false;
+        if (getClasse() != null ? !getClasse().equals(that.getClasse()) : that.getClasse() != null) return false;
+        if (getDataChamada() != null ? !getDataChamada().equals(that.getDataChamada()) : that.getDataChamada() != null)
+            return false;
+        return getChamadaFinalizada() != null ? getChamadaFinalizada().equals(that.getChamadaFinalizada()) : that.getChamadaFinalizada() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getEscola(), getClasse(), getDataChamada(), getChamadaFinalizada());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getEscola() != null ? getEscola().hashCode() : 0);
+        result = 31 * result + (getClasse() != null ? getClasse().hashCode() : 0);
+        result = 31 * result + (getDataChamada() != null ? getDataChamada().hashCode() : 0);
+        result = 31 * result + (getChamadaFinalizada() != null ? getChamadaFinalizada().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }

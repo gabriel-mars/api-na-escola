@@ -161,26 +161,46 @@ public class EscolaEntity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof EscolaEntity)) return false;
+
         EscolaEntity that = (EscolaEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(codigoMec, that.codigoMec) &&
-                Objects.equals(nome, that.nome) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(senha, that.senha) &&
-                Objects.equals(diretor, that.diretor) &&
-                Objects.equals(telefone, that.telefone) &&
-                Objects.equals(cep, that.cep) &&
-                Objects.equals(endereco, that.endereco) &&
-                Objects.equals(municipio, that.municipio) &&
-                Objects.equals(uf, that.uf) &&
-                Objects.equals(logo, that.logo) &&
-                Objects.equals(confirmacao, that.confirmacao);
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getCodigoMec() != null ? !getCodigoMec().equals(that.getCodigoMec()) : that.getCodigoMec() != null)
+            return false;
+        if (getNome() != null ? !getNome().equals(that.getNome()) : that.getNome() != null) return false;
+        if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null) return false;
+        if (getSenha() != null ? !getSenha().equals(that.getSenha()) : that.getSenha() != null) return false;
+        if (getTelefone() != null ? !getTelefone().equals(that.getTelefone()) : that.getTelefone() != null)
+            return false;
+        if (getCep() != null ? !getCep().equals(that.getCep()) : that.getCep() != null) return false;
+        if (getEndereco() != null ? !getEndereco().equals(that.getEndereco()) : that.getEndereco() != null)
+            return false;
+        if (getMunicipio() != null ? !getMunicipio().equals(that.getMunicipio()) : that.getMunicipio() != null)
+            return false;
+        if (getUf() != null ? !getUf().equals(that.getUf()) : that.getUf() != null) return false;
+        if (getLogo() != null ? !getLogo().equals(that.getLogo()) : that.getLogo() != null) return false;
+        if (getConfirmacao() != null ? !getConfirmacao().equals(that.getConfirmacao()) : that.getConfirmacao() != null)
+            return false;
+        return getDiretor() != null ? getDiretor().equals(that.getDiretor()) : that.getDiretor() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, codigoMec, nome, email, senha, diretor, telefone, cep, endereco, municipio, uf, logo, confirmacao);
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getCodigoMec() != null ? getCodigoMec().hashCode() : 0);
+        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getSenha() != null ? getSenha().hashCode() : 0);
+        result = 31 * result + (getTelefone() != null ? getTelefone().hashCode() : 0);
+        result = 31 * result + (getCep() != null ? getCep().hashCode() : 0);
+        result = 31 * result + (getEndereco() != null ? getEndereco().hashCode() : 0);
+        result = 31 * result + (getMunicipio() != null ? getMunicipio().hashCode() : 0);
+        result = 31 * result + (getUf() != null ? getUf().hashCode() : 0);
+        result = 31 * result + (getLogo() != null ? getLogo().hashCode() : 0);
+        result = 31 * result + (getConfirmacao() != null ? getConfirmacao().hashCode() : 0);
+        result = 31 * result + (getDiretor() != null ? getDiretor().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }

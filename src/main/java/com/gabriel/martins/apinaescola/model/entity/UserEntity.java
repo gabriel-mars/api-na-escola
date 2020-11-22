@@ -128,22 +128,37 @@ public class UserEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserEntity)) return false;
+
         UserEntity that = (UserEntity) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getCpf(), that.getCpf()) &&
-                Objects.equals(getNome(), that.getNome()) &&
-                Objects.equals(getEmail(), that.getEmail()) &&
-                Objects.equals(getSenha(), that.getSenha()) &&
-                Objects.equals(getTelefone(), that.getTelefone()) &&
-                Objects.equals(getEndereco(), that.getEndereco()) &&
-                Objects.equals(getMunicipio(), that.getMunicipio()) &&
-                Objects.equals(getUf(), that.getUf()) &&
-                Objects.equals(getCep(), that.getCep());
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getCpf() != null ? !getCpf().equals(that.getCpf()) : that.getCpf() != null) return false;
+        if (getNome() != null ? !getNome().equals(that.getNome()) : that.getNome() != null) return false;
+        if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null) return false;
+        if (getSenha() != null ? !getSenha().equals(that.getSenha()) : that.getSenha() != null) return false;
+        if (getTelefone() != null ? !getTelefone().equals(that.getTelefone()) : that.getTelefone() != null)
+            return false;
+        if (getEndereco() != null ? !getEndereco().equals(that.getEndereco()) : that.getEndereco() != null)
+            return false;
+        if (getMunicipio() != null ? !getMunicipio().equals(that.getMunicipio()) : that.getMunicipio() != null)
+            return false;
+        if (getUf() != null ? !getUf().equals(that.getUf()) : that.getUf() != null) return false;
+        return getCep() != null ? getCep().equals(that.getCep()) : that.getCep() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCpf(), getNome(), getEmail(), getSenha(), getTelefone(), getEndereco(), getMunicipio(), getUf(), getCep());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getCpf() != null ? getCpf().hashCode() : 0);
+        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getSenha() != null ? getSenha().hashCode() : 0);
+        result = 31 * result + (getTelefone() != null ? getTelefone().hashCode() : 0);
+        result = 31 * result + (getEndereco() != null ? getEndereco().hashCode() : 0);
+        result = 31 * result + (getMunicipio() != null ? getMunicipio().hashCode() : 0);
+        result = 31 * result + (getUf() != null ? getUf().hashCode() : 0);
+        result = 31 * result + (getCep() != null ? getCep().hashCode() : 0);
+        return result;
     }
     //END - HASH and EQUALS
 }
