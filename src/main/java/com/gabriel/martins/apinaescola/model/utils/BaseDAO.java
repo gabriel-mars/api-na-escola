@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gabriel.martins.apinaescola.model.dao;
+package com.gabriel.martins.apinaescola.model.utils;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
