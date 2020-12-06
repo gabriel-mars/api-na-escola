@@ -1,6 +1,7 @@
 package com.gabriel.martins.apinaescola.model.utils;
 
 import com.gabriel.martins.apinaescola.model.entity.EmailEntity;
+import com.gabriel.martins.apinaescola.model.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,8 +22,8 @@ public class EmailSchedule {
     private final long VINTE_MINUTOS = MINUTO * 20;
     private final long VINTE_E_CINCO_MINUTOS = MINUTO * 25;
 
-//    @Autowired
-//    private EmailService service;
+    @Autowired
+    private EmailService service;
 
     @Autowired(required = false)
     private EmailFactory emailFactory;
@@ -77,7 +78,7 @@ public class EmailSchedule {
         List<EmailEntity> emails = new ArrayList<>();
         EmailEntity email = new EmailEntity();
 
-//        emails = service.buscarPorNaoEnviadaEscola();
+        emails = service.buscarPorNaoEnviadaEscola();
         email = emails.get(0);
 
         return email;
@@ -87,7 +88,7 @@ public class EmailSchedule {
         List<EmailEntity> emails = new ArrayList<>();
         EmailEntity email = new EmailEntity();
 
-//        emails = service.buscarPorNaoEnviadaSenhaEscola();
+        emails = service.buscarPorNaoEnviadaSenhaEscola();
         email = emails.get(0);
 
         return email;
@@ -97,7 +98,7 @@ public class EmailSchedule {
         List<EmailEntity> emails = new ArrayList<>();
         EmailEntity email = new EmailEntity();
 
-//        emails = service.buscarPorNaoEnviadaSenhaProfessor();
+        emails = service.buscarPorNaoEnviadaSenhaProfessor();
         email = emails.get(0);
 
         return email;
@@ -107,7 +108,7 @@ public class EmailSchedule {
         List<EmailEntity> emails = new ArrayList<>();
         EmailEntity email = new EmailEntity();
 
-//        emails = service.buscarPorNaoEnviada();
+        emails = service.buscarPorNaoEnviada();
 
         if (emails == null) {
             return null;
@@ -121,7 +122,7 @@ public class EmailSchedule {
         List<EmailEntity> emails = new ArrayList<>();
         EmailEntity email = new EmailEntity();
 
-//        emails = service.buscarPorNaoEnviadaProfessor();
+        emails = service.buscarPorNaoEnviadaProfessor();
         email = emails.get(0);
 
         return email;
@@ -129,6 +130,6 @@ public class EmailSchedule {
 
     public void finalizarEmail(EmailEntity email) {
         email.setEnviado(Boolean.TRUE);
-//        service.editar(email);
+        service.editar(email);
     }
 }
