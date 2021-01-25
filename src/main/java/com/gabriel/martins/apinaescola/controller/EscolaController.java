@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.gabriel.martins.apinaescola.controller;
 
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
+import com.gabriel.martins.apinaescola.model.service.EscolaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 public class EscolaController {
-    
-//    @Autowired
-//    private EscolaService service;
+
+    @Autowired
+    private EscolaService service;
     
     @PostMapping("/escola")
     public ResponseEntity<?> cadastrarEscola(@RequestBody EscolaEntity escola){
