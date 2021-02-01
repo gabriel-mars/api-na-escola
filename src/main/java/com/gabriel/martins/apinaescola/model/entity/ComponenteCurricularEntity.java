@@ -1,5 +1,6 @@
 package com.gabriel.martins.apinaescola.model.entity;
 
+import com.gabriel.martins.apinaescola.model.enums.TIPO_AVALIACAO;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class ComponenteCurricularEntity implements Serializable {
     @Column(name = "tipo_avaliacao")
     @Enumerated(EnumType.STRING)
     @Expose
-    private String tipoAvaliacao;
+    private TIPO_AVALIACAO tipoAvaliacao;
 
     @Column(name = "media_aprovacao", nullable = false)
     private Double mediaAprovacao;
@@ -66,11 +67,11 @@ public class ComponenteCurricularEntity implements Serializable {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public String getTipoAvaliacao() {
+    public TIPO_AVALIACAO getTipoAvaliacao() {
         return tipoAvaliacao;
     }
 
-    public void setTipoAvaliacao(String tipoAvaliacao) {
+    public void setTipoAvaliacao(TIPO_AVALIACAO tipoAvaliacao) {
         this.tipoAvaliacao = tipoAvaliacao;
     }
 

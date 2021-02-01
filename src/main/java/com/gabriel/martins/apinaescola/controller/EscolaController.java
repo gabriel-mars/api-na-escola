@@ -24,7 +24,7 @@ public class EscolaController {
     @PostMapping("/escola")
     public ResponseEntity<?> cadastrarEscola(@RequestBody EscolaEntity escola){
         try {
-//            service.createUser(escola);
+            service.save(escola);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
@@ -34,7 +34,7 @@ public class EscolaController {
     @PostMapping("/escola/login")
     public ResponseEntity<?> loginEscola(@RequestBody EscolaEntity escola){
         try {
-//            escola = service.findByLogin(escola);
+            escola = service.findByLogin(escola);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário e/ou senha incorretos.");
@@ -44,31 +44,30 @@ public class EscolaController {
     @GetMapping("/user/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         try {
-//                EscolaEntity escola = service.findById(id);
-//                return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body("OK");
+            EscolaEntity escola = service.findById(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
         } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
         }
     }
 
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
         try {
-//                service.deleteUserById(id);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body(Boolean.TRUE);
+                service.remove(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Boolean.TRUE);
         } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
         }
     }
 
     @PutMapping("/user/{id}")
     public ResponseEntity<?> updateUserById(@PathVariable Long id, @RequestBody EscolaEntity escola) {
         try {
-//                service.updateUser(escola);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
+            service.update(escola);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
         } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Requisição inválida.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Requisição inválida.");
         }
     }
 }

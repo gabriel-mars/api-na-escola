@@ -13,8 +13,8 @@ import java.util.Properties;
 @Service
 public class EmailFactory {
 
-    final String username = "eduqstudent@gmail.com";
-    final String password = "EduqStudent123";
+    final String username = "naescolasoft@gmail.com";
+    final String password = "NaEscola@2021";
     private String mailSMTPServer;
     private String mailSMTPServerPort;
     String to;
@@ -50,7 +50,7 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, "EduqStudent123");
+                return new PasswordAuthentication(username, password);
             }
         });
 
@@ -58,7 +58,7 @@ public class EmailFactory {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject(" [Não Responda] Pré cadastro EduQ Student Life");
+            message.setSubject(" [Não Responda] Pré-cadastro: Plataforma NaEscola");
 
             String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeEscola() +"!</h1><hr/>"
                     + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
@@ -92,7 +92,7 @@ public class EmailFactory {
     // Envio de e-mail no com uma dúvida de uma escola
     public void sendMailDuvida(EmailEntity email) {
         Properties props = new Properties();
-        to = "eduqstudent@gmail.com";
+        to = username;
 
         props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP
         props.put("mail.smtp.starttls.enable","true");
@@ -108,7 +108,7 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, "EduqStudent123");
+                return new PasswordAuthentication(username, password);
             }
         });
 
@@ -117,7 +117,7 @@ public class EmailFactory {
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email.getEmailEscola()));
-            message.setSubject("[Dúvida] EduQ Student Life : " + email.getTituloDuvida());
+            message.setSubject("[Dúvida] NaEscola : " + email.getTituloDuvida());
 
             String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá, " + email.getNomeEscola() + "!</h1><hr/>"
                     + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
@@ -165,7 +165,7 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, "EduqStudent123");
+                return new PasswordAuthentication(username, password);
             }
         });
 
@@ -174,7 +174,7 @@ public class EmailFactory {
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email.getEmailEscola()));
-            message.setSubject("[Cadastro] EduQ Student Life");
+            message.setSubject("[Cadastro] Plataforma NaEscola");
 
             String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeProfessor() + "!</h1><hr/>"
                     + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
@@ -228,7 +228,7 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, "EduqStudent123");
+                return new PasswordAuthentication(username, password);
             }
         });
 
@@ -236,7 +236,7 @@ public class EmailFactory {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("[Restauração de senha] EduQ Student Life");
+            message.setSubject("[Restauração de senha] Plataforma NaEscola");
 
             String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeEscola() + "!</h1><hr/>"
                     + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
@@ -287,7 +287,7 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, "EduqStudent123");
+                return new PasswordAuthentication(username, password);
             }
         });
 
@@ -295,7 +295,7 @@ public class EmailFactory {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("[Restauração de senha] EduQ Student Life");
+            message.setSubject("[Restauração de senha] Plataforma NaEscola");
 
             String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeProfessor() + "!</h1><hr/>"
                     + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
