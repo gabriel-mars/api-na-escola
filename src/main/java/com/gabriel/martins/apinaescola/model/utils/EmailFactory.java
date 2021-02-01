@@ -58,22 +58,21 @@ public class EmailFactory {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject(" [Não Responda] Pré-cadastro: Plataforma NaEscola");
+            message.setSubject("[Não Responda] Pré-cadastro: Plataforma NaEscola");
 
-            String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeEscola() +"!</h1><hr/>"
-                    + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
+            String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeEscola() +"!</h1>"
+                    + "<hr/><div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Recebemos seus dados e está tudo certo!</p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Estamos enviando este e-mail para que você possa completar seu cadastro.</p>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Por favor, clique no botão abaixo e informe os dados indicados. Logo após, você será levado para a página de login.</p></div>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"+ "<a style='background-color:#21c25e;border:none;color:white;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/completarCadastro'>Continuar</a>" + "</p>"
-                    + "<div><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr><td><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr>"
-                    + "</tbody></table><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "<td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'>"
-                    + "<h2 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Surgiu alguma dúvida?</h2></td></tr><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "<td valign='top' align='left' style='padding:24px 40px 48px 40px;background-color:#ffffff;border-radius:5px'><p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Caso tenha alguma dúvida sobre a aplicação, consulte a seção <font style='color:#21c25e'>'Fale conosco'</font> na página principal do site.</p></td></tr></tbody></table></td></tr></tbody></table></div>";
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Por favor, clique no botão abaixo e informe os dados indicados.</p>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Logo após, você será levado para a página de login.</p></div>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"
+                    + "<a style='background-color:#cbc26d;border:none;color:#000;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/completarCadastro'>Continuar</a></p>"
+                    + "<div><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'><tbody><tr><td><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
+                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr></tbody></table>"
+                    + "<table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'><tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'>"
+                    + "<h2 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Surgiu alguma dúvida?</h2></td></tr><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='left' style='padding:24px 40px 48px 40px;background-color:#ffffff;border-radius:5px'>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Caso tenha alguma dúvida sobre a aplicação, consulte a seção <font style='color:#cbc26d'>'Fale conosco'</font> na página principal do site.</p></td></tr></tbody></table></td></tr></tbody></table></div>";
 
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msgContent, "text/html;  charset=utf-8");
@@ -178,22 +177,18 @@ public class EmailFactory {
 
             String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeProfessor() + "!</h1><hr/>"
                     + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"
-                    + "Informamos que você foi cadastrado como professor na plataforma EduQ Student Life pela escola <strong>" + email.getNomeEscola() + ".</strong></p>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Informamos que você foi cadastrado como professor na plataforma NaEscola pela instituição de ensino <strong>" + email.getNomeEscola() + ".</strong></p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Para acessar sua conta, basta acessar o link abaixo e inserir os dados indicados.</p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Seguem abaixo suas informações para se autenticar na plataforma:</p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Código de acesso: " + email.getCodigoProfessor() + "</strong></p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Senha: " + email.getSenhaProfessor() + "</strong></p>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"+ "<a style='background-color:#21c25e;border:none;color:white;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/entrarProfessor'>Entrar</a>" + "</p>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"
+                    + "<a style='background-color:#cbc26d;border:none;color:#000;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/entrarProfessor'>Entrar</a></p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Obs.</strong>: Por questões de segurança, altere sua senha em seu primeiro acesso.</p>"
-                    + "<div><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr><td><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr>"
-                    + "</tbody></table><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "<td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'>"
-                    + "</td></tr><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "</tr></tbody></table></td></tr></tbody></table></div>";
+                    + "<div><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'><tbody><tr><td><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
+                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr></tbody></table>"
+                    + "<table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'><tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'></td></tr><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'></tr>"
+                    + "</tbody></table></td></tr></tbody></table></div>";
 
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msgContent, "text/html;  charset=utf-8");
@@ -238,21 +233,20 @@ public class EmailFactory {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("[Restauração de senha] Plataforma NaEscola");
 
-            String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeEscola() + "!</h1><hr/>"
-                    + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
+            String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeEscola() + "!</h1>"
+                    + "<hr/><div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Uma nova senha foi gerada para a sua conta.</p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Para acessar sua conta, basta acessar o link abaixo, inserindo seu código do MEC e a senha indicada abaixo.</p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Senha: " + email.getSenhaEscola() + "</strong></p>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"+ "<a style='background-color:#21c25e;border:none;color:white;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/entrar'>Entrar</a></p>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><a style='background-color:#cbc26d;border:none;color:#000;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/entrar'>Entrar</a></p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Obs.</strong>: Por questões de segurança, altere sua senha assim que realizar seu acesso.</p>"
                     + "<div><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
                     + "<tbody><tr><td><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr>"
-                    + "</tbody></table><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "<td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'>"
-                    + "</td></tr><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "</tr></tbody></table></td></tr></tbody></table></div>";
+                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr></tbody></table>"
+                    + "<table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
+                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'></td></tr>"
+                    + "<tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'></tr>"
+                    + "</tbody></table></td></tr></tbody></table></div> ";
 
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msgContent, "text/html;  charset=utf-8");
@@ -297,21 +291,21 @@ public class EmailFactory {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("[Restauração de senha] Plataforma NaEscola");
 
-            String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeProfessor() + "!</h1><hr/>"
-                    + "<div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
+            String msgContent = "<h1 style='font-size:24px;color:#5d666f;margin:0;padding:0;font-weight:bold'>Olá " + email.getNomeProfessor() + "!</h1>"
+                    + "<hr/><div style='padding:24px 40px 48px 40px;background-color:#ffffff'>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Uma nova senha foi gerada para a sua conta.</p>"
                     + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>Para acessar sua conta, basta acessar o link abaixo, inserir seu código de acesso e a senha indicada abaixo.</p>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Senha: " + email.getSenhaProfessor() + "</strong></p>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"+ "<a style='background-color:#21c25e;border:none;color:white;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/entrarProfessor'>Entrar</a></p>"
-                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Obs.</strong>: Por questões de segurança, altere sua senha assim que realizar seu acesso.</p>"
-                    + "<div><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'><strong>Senha: " + email.getSenhaProfessor() + "</strong></p"
+                    + "><p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"
+                    + "<a style='background-color:#cbc26d;border:none;color:#000;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;' href='http://localhost:8080/entrarProfessor'>Entrar</a></p>"
+                    + "<p style='font-size:14px;color:#5d666f;margin:0;padding:0;font-weight:normal;line-height:24px;text-align:left;color:#5d666f'>"
+                    + "<strong>Obs.</strong>: Por questões de segurança, altere sua senha assim que realizar seu acesso.</p><div>"
+                    + "<table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
                     + "<tbody><tr><td><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr>"
-                    + "</tbody></table><table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
-                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "<td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'>"
-                    + "</td></tr><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'>"
-                    + "</tr></tbody></table></td></tr></tbody></table></div>";
+                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='center' style='padding:8px'></td></tr></tbody></table>"
+                    + "<table border='0' cellpadding='0' cellspacing='0' width='100%' style='margin:0;padding:0;max-width:600px'>"
+                    + "<tbody><tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'><td valign='top' align='left' style='padding:40px 40px 0 40px;background-color:#ffffff;border-radius:5px'></td></tr>"
+                    + "<tr style='margin:0;padding:0;font-family:'Open sans',sans-serif'></tr></tbody></table></td></tr></tbody></table></div>";
 
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msgContent, "text/html;  charset=utf-8");
