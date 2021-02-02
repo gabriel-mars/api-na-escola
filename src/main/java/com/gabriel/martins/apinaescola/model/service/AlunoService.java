@@ -3,7 +3,6 @@ package com.gabriel.martins.apinaescola.model.service;
 import com.gabriel.martins.apinaescola.model.dao.AlunoRepositoty;
 import com.gabriel.martins.apinaescola.model.entity.AlunoEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
-import com.gabriel.martins.apinaescola.model.entity.ResponsavelEntity;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,17 +16,17 @@ public class AlunoService {
     private AlunoRepositoty repository;
     
     @Transactional(readOnly = false)
-    public void salvar(AlunoEntity aluno) {
+    public void save(AlunoEntity aluno) {
         repository.save(aluno);
     }
 
     @Transactional(readOnly = false)
-    public void editar(AlunoEntity aluno) {
+    public void update(AlunoEntity aluno) {
         repository.update(aluno);
     }
 
     @Transactional(readOnly = false)
-    public void excluir(Long id) {
+    public void remove(Long id) {
         repository.delete(id);
     }
 
@@ -36,15 +35,15 @@ public class AlunoService {
         repository.update(aluno);
     }
 
-    public AlunoEntity buscarPorId(Long id) {
+    public AlunoEntity findById(Long id) {
         return repository.findById(id); 
     }
 
-    public List<AlunoEntity> buscarTodos() {
+    public List<AlunoEntity> findAll() {
         return repository.findAll();
     }
 
-    public List<AlunoEntity> buscarPorEscola(Long escolaId) {
+    public List<AlunoEntity> findByEscola(Long escolaId) {
         return repository.findByEscola(escolaId);
     }
 
@@ -80,11 +79,11 @@ public class AlunoService {
         return securityKey;
     }
 
-    public List<AlunoEntity> buscarPorSemClasse(Long escolaId) {
+    public List<AlunoEntity> findByNoClass(Long escolaId) {
         return repository.findByNoClass(escolaId);
     }
 
-    public List<AlunoEntity> buscarPorClasse(Long id) {
+    public List<AlunoEntity> findByClass(Long id) {
         return repository.findByClass(id);
     }
 
@@ -93,15 +92,15 @@ public class AlunoService {
             return repository.findByClass(id);
     }
 
-    public List<AlunoEntity> buscarPorNome(String nome, Long id) {
+    public List<AlunoEntity> findByName(String nome, Long id) {
         return repository.findByName(nome, id);
     }
 
-    public List<AlunoEntity> buscarPorProfessor(Long id) {
+    public List<AlunoEntity> findByProfessor(Long id) {
         return repository.findByProfessor(id);
     }
 
-    public List<AlunoEntity> buscarPorNomeProfessor(String nome, Long id) {
+    public List<AlunoEntity> findByNameProfessor(String nome, Long id) {
         return repository.findByNameProfessor(nome, id);
     }
 }

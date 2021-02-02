@@ -41,7 +41,7 @@ public class EscolaController {
         }
     }
     
-    @GetMapping("/user/{id}")
+    @GetMapping("/escola/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         try {
             EscolaEntity escola = service.findById(id);
@@ -51,17 +51,17 @@ public class EscolaController {
         }
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/escola/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
         try {
-                service.remove(id);
+            service.remove(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(Boolean.TRUE);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
         }
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/escola/{id}")
     public ResponseEntity<?> updateUserById(@PathVariable Long id, @RequestBody EscolaEntity escola) {
         try {
             service.update(escola);
