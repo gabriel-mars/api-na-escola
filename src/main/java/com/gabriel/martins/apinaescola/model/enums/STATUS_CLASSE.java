@@ -2,7 +2,8 @@ package com.gabriel.martins.apinaescola.model.enums;
 
 public enum STATUS_CLASSE {
     ATIVA("Ativa"),
-    INATIVA("Inativa");
+    INATIVA("Inativa"),
+    SUSPENSA("Suspensa");
 
     private String label;
 

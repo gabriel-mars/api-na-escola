@@ -3,6 +3,7 @@ package com.gabriel.martins.apinaescola.model.service;
 import com.gabriel.martins.apinaescola.model.dao.AlunoRepositoty;
 import com.gabriel.martins.apinaescola.model.entity.AlunoEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
+import com.gabriel.martins.apinaescola.model.entity.ResponsavelEntity;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,9 +44,9 @@ public class AlunoService {
         return repository.findAll();
     }
 
-//    public List<AlunoEntity> buscarPorEscola(Long escolaId) {
-//        return dao.findByEscola(escolaId);
-//    }
+    public List<AlunoEntity> buscarPorEscola(Long escolaId) {
+        return repository.findByEscola(escolaId);
+    }
 
     public String gerarCodigoEscola(EscolaEntity escola, String cpf) {
         String codigoGerado;
@@ -79,44 +80,28 @@ public class AlunoService {
         return securityKey;
     }
 
-//    @Transactional(readOnly = true)
-//    public List<AlunoEntity> buscarPorSemClasse(Long escolaId) {
-//            return dao.findByNoClass(escolaId);
-//    }
-//
-//    @Transactional(readOnly = true)
-//    public List<AlunoEntity> buscarPorClasse(Long id) {
-//            return dao.findByClass(id);
-//    }
-//
-//    @Transactional(readOnly = true)
-//    public List<Object[]> buscarPorClasseBoletim(Long id) {
-//            return dao.findByClasseBoletim(id);
-//    }
-//
-//    public List<AlunoEntity> buscarPorNome(String nome, Long id) {
-//            return dao.findByName(nome, id);
-//    }
-//
-//    public List<AlunoEntity> buscarPorProfessor(Long id) {
-//            return dao.findByProfessor(id);
-//    }
-//
-//    public List<AlunoEntity> buscarPorNomeProfessor(String nome, Long id) {
-//            return dao.findByNameProfessor(nome, id);
-//    }
-//    
-//    public Pessoa buscarDadosResponsavel(String codigoAluno) {
-//        Pessoa responsavel = new Pessoa();
-//        List<Object[]> aux = dao.findDataResponsavel(codigoAluno);
-//
-//        Object[] result = aux.get(0);
-//        responsavel.setNome(result[0].toString());
-//        responsavel.setTelefone(result[1].toString());
-//        responsavel.setEmail(result[2].toString());
-//        responsavel.setEndereco(result[3].toString());
-//        responsavel.setMunicipio(result[4].toString());
-//
-//        return responsavel;
-//    }
+    public List<AlunoEntity> buscarPorSemClasse(Long escolaId) {
+        return repository.findByNoClass(escolaId);
+    }
+
+    public List<AlunoEntity> buscarPorClasse(Long id) {
+        return repository.findByClass(id);
+    }
+
+    @Deprecated
+    public List<AlunoEntity> buscarPorClasseBoletim(Long id) {
+            return repository.findByClass(id);
+    }
+
+    public List<AlunoEntity> buscarPorNome(String nome, Long id) {
+        return repository.findByName(nome, id);
+    }
+
+    public List<AlunoEntity> buscarPorProfessor(Long id) {
+        return repository.findByProfessor(id);
+    }
+
+    public List<AlunoEntity> buscarPorNomeProfessor(String nome, Long id) {
+        return repository.findByNameProfessor(nome, id);
+    }
 }

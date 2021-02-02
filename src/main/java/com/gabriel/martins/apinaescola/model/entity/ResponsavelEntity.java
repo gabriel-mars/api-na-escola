@@ -2,7 +2,6 @@ package com.gabriel.martins.apinaescola.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "responsavel")

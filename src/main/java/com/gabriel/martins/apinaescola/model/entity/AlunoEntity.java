@@ -1,9 +1,10 @@
 package com.gabriel.martins.apinaescola.model.entity;
 
+import com.gabriel.martins.apinaescola.model.enums.SITUACAO_ALUNO;
+import com.google.gson.annotations.Expose;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "aluno")
@@ -35,9 +36,6 @@ public class AlunoEntity implements Serializable {
     @Column(name = "nome_mae", nullable = false, length = 50)
     private String nomeMae;
 
-    @Column(name = "situacao", nullable = false)
-    private String situacao;
-
     @Column(name = "justificativa")
     private String justificativa;
 
@@ -48,6 +46,15 @@ public class AlunoEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_responsavel_id", columnDefinition = "bigint")
     private ResponsavelEntity responsavel;
+    
+    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "fk_user_id", columnDefinition = "bigint")
+    private UserEntity usuario;
+    
+    @Column(name = "situacao")
+    @Enumerated(EnumType.STRING)
+    @Expose
+    private SITUACAO_ALUNO situacao;
 
     //GETTERS and SETTERS
     public Long getId() {
@@ -106,11 +113,11 @@ public class AlunoEntity implements Serializable {
         this.nomeMae = nomeMae;
     }
 
-    public String getSituacao() {
+    public SITUACAO_ALUNO getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(String situacao) {
+    public void setSituacao(SITUACAO_ALUNO situacao) {
         this.situacao = situacao;
     }
 
@@ -136,6 +143,14 @@ public class AlunoEntity implements Serializable {
 
     public void setResponsavel(ResponsavelEntity responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public UserEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UserEntity usuario) {
+        this.usuario = usuario;
     }
     //END - GETTERS and SETTERS
 

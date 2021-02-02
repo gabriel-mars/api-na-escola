@@ -1,5 +1,7 @@
 package com.gabriel.martins.apinaescola.model.entity;
 
+import com.gabriel.martins.apinaescola.model.enums.TIPO_USUARIO;
+import com.google.gson.annotations.Expose;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -40,6 +42,11 @@ public class UserEntity implements Serializable {
 
     @Column(name = "cep", length = 10)
     private String cep;
+    
+    @Column(name = "tipo")
+    @Enumerated(EnumType.STRING)
+    @Expose
+    private TIPO_USUARIO tipo;
 
     //GETTERS and SETTERS
     public Long getId() {
@@ -120,6 +127,14 @@ public class UserEntity implements Serializable {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public TIPO_USUARIO getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TIPO_USUARIO tipo) {
+        this.tipo = tipo;
     }
     //END - GETTERS and SETTERS
 

@@ -3,7 +3,8 @@ package com.gabriel.martins.apinaescola.model.enums;
 public enum TIPO_AVISO {
     PROVA("Prova"),
     REUNIAO("Reunião"),
-    LEMBRETE("Lembrete");
+    LEMBRETE("Lembrete"),
+    OUTROS("Outros");
 
     private String label;
 

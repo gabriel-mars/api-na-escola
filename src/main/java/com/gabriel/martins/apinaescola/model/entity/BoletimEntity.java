@@ -1,6 +1,6 @@
 package com.gabriel.martins.apinaescola.model.entity;
 
-import com.gabriel.martins.apinaescola.model.enums.BIMESTRE_BOLETIM;
+import com.gabriel.martins.apinaescola.model.enums.PERIODO_BOLETIM;
 import com.gabriel.martins.apinaescola.model.enums.STATUS_BOLETIM;
 import com.google.gson.annotations.Expose;
 
@@ -29,7 +29,7 @@ public class BoletimEntity implements Serializable {
     @Column(name = "bimestre")
     @Enumerated(EnumType.STRING)
     @Expose
-    private BIMESTRE_BOLETIM bimestre;
+    private PERIODO_BOLETIM bimestre;
 
     @Column(name = "observacao")
     private String observacao;
@@ -66,11 +66,11 @@ public class BoletimEntity implements Serializable {
         this.classe = classe;
     }
 
-    public BIMESTRE_BOLETIM getBimestre() {
+    public PERIODO_BOLETIM getBimestre() {
         return bimestre;
     }
 
-    public void setBimestre(BIMESTRE_BOLETIM bimestre) {
+    public void setBimestre(PERIODO_BOLETIM bimestre) {
         this.bimestre = bimestre;
     }
 
