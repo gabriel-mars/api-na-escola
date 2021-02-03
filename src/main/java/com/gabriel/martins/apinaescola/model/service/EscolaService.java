@@ -45,7 +45,11 @@ public class EscolaService {
     }
 
     @Transactional(readOnly = false)
-    public void update(EscolaEntity entity) throws Exception { repository.update(entity); }
+    public void update(EscolaEntity entity) throws Exception {
+        String senha = SecurityGeneric.getSecurePassword(entity.getSenha());
+        entity.setSenha(senha);
+        repository.update(entity);
+    }
 
     @Transactional(readOnly = false)
     public void remove(Long id) throws Exception { repository.delete(id); }
@@ -83,33 +87,18 @@ public class EscolaService {
         return escola;
     }
 
-    public void updateSenhaEscola(EscolaEntity escola) { repository.updateSenhaEscola(escola); }
+    public void updateSenhaEscola(EscolaEntity escola) {
+        String senha = SecurityGeneric.getSecurePassword(escola.getSenha());
+        escola.setSenha(senha);
+        repository.updateSenhaEscola(escola);
+    }
 
     public String gerarSenhaAleatoria() {
         String senhaAleatoria;
 
-        senhaAleatoria = generateSecurityKey();
+        senhaAleatoria = SecurityGeneric.generateSecurityKey();
 
         return senhaAleatoria;
-    }
-
-    private String generateSecurityKey(){
-        int maxCharacters = 8;
-        String[] characters = { "a", "1", "b", "2", "4", "5", "6", "7", "8",
-                "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
-                "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
-                "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I",
-                "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-                "V", "W", "X", "Y", "Z","!","#","$","%" };
-
-        StringBuilder securityKey = new StringBuilder();
-
-        for (int i = 0; i < maxCharacters; i++) {
-            int posicao = (int) (Math.random() * characters.length);
-            securityKey.append(characters[posicao]);
-        }
-
-        return securityKey.toString();
     }
 
     @Transactional(readOnly = true)
