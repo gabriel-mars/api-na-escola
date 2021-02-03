@@ -28,7 +28,7 @@ public class AlunoController {
     private EscolaService escolaService;
     
     @PostMapping("/aluno")
-    public ResponseEntity<?> cadastrarEscola(@RequestBody AlunoEntity aluno){
+    public ResponseEntity<?> cadastrarAluno(@RequestBody AlunoEntity aluno){
         try {
             EscolaEntity escola = escolaService.findById(aluno.getEscola().getId());
             String codigoGerado = service.gerarCodigoEscola(escola, aluno.getUsuario().getCpf());

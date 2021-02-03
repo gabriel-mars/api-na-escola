@@ -6,6 +6,7 @@ import com.gabriel.martins.apinaescola.model.entity.DiaLetivoEntity;
 import com.gabriel.martins.apinaescola.model.entity.EmailEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
 import com.gabriel.martins.apinaescola.model.entity.RequisicaoEntity;
+import com.gabriel.martins.apinaescola.model.utils.SecurityGeneric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,8 @@ public class EscolaService {
     @Transactional(readOnly = false)
     public void save(EscolaEntity entity) throws Exception {
         try {
+            entity.setSenha(SecurityGeneric.getSecurePassword(entity.getSenha()));
+            entity.setHash(SecurityGeneric.getHashUser(entity.getCodigoMec().toString()));
             repository.save(entity);
 
             EmailEntity email = new EmailEntity();

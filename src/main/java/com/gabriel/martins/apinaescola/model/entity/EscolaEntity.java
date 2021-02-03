@@ -50,6 +50,9 @@ public class EscolaEntity implements Serializable {
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "fk_user_id", columnDefinition = "bigint")
     private UserEntity diretor;
+    
+    @Column(name = "hash", length = 150)
+    private String hash;
 
     // GETTERS and SETTERS
     public Long getId() {
@@ -154,6 +157,14 @@ public class EscolaEntity implements Serializable {
 
     public void setConfirmacao(String confirmacao) {
         this.confirmacao = confirmacao;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
     //END - GETTERS and SETTERS
 

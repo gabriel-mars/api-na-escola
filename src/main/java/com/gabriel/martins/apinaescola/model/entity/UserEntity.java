@@ -43,6 +43,9 @@ public class UserEntity implements Serializable {
     @Column(name = "cep", length = 10)
     private String cep;
     
+    @Column(name = "hash", length = 150)
+    private String hash;
+    
     @Column(name = "tipo")
     @Enumerated(EnumType.STRING)
     @Expose
@@ -135,6 +138,14 @@ public class UserEntity implements Serializable {
 
     public void setTipo(TIPO_USUARIO tipo) {
         this.tipo = tipo;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
     //END - GETTERS and SETTERS
 

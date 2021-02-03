@@ -2,6 +2,7 @@ package com.gabriel.martins.apinaescola.model.service;
 
 import com.gabriel.martins.apinaescola.model.dao.ResponsavelRepository;
 import com.gabriel.martins.apinaescola.model.entity.ResponsavelEntity;
+import com.gabriel.martins.apinaescola.model.utils.SecurityGeneric;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class ResponsavelService {
     
     @Transactional(readOnly = false)
     public void salvar(ResponsavelEntity responsavel) {
+        responsavel.getUsuario().setSenha(SecurityGeneric.getSecurePassword(responsavel.getUsuario().getSenha()));
+        responsavel.getUsuario().setHash(SecurityGeneric.getHashUser(responsavel.getUsuario().getCpf()));
         repository.save(responsavel);
     }
 
