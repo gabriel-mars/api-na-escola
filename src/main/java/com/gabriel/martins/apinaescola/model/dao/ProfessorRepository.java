@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.gabriel.martins.apinaescola.model.dao;
 
 import com.gabriel.martins.apinaescola.model.entity.ProfessorEntity;
@@ -11,11 +6,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author b2ml
- */
+@Repository
 public class ProfessorRepository extends BaseDAO<ProfessorEntity, Long>{
     
     @PersistenceContext
@@ -32,7 +25,7 @@ public class ProfessorRepository extends BaseDAO<ProfessorEntity, Long>{
     }
 
     @SuppressWarnings("unchecked")
-    public List<ProfessorEntity> findByProfessor(Long escolaId) {
+    public List<ProfessorEntity> findByEscola(Long escolaId) {
         TypedQuery<ProfessorEntity> query = manager.createQuery("SELECT p.id, p.usuario.nome FROM ProfessorEntity p "
                 + "WHERE p.escola.id = :escola", ProfessorEntity.class);
         query.setParameter("escola", escolaId);

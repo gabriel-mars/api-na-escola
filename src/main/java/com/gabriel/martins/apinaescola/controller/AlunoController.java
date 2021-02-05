@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -28,58 +29,78 @@ public class AlunoController {
     private EscolaService escolaService;
     
     @PostMapping("/aluno")
-    public ResponseEntity<?> cadastrarAluno(@RequestBody AlunoEntity aluno){
-        try {
-            EscolaEntity escola = escolaService.findById(aluno.getEscola().getId());
-            String codigoGerado = service.gerarCodigoEscola(escola, aluno.getUsuario().getCpf());
-            
-            aluno.setEscola(escola);
-            aluno.setCodigoGeradoEscola(codigoGerado);
-            
-            service.save(aluno);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(aluno);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
+    public ResponseEntity<?> cadastrarAluno(@RequestHeader("api-hash") String hash, @RequestBody AlunoEntity aluno){
+        if(hash.isBlank() || hash.isEmpty()){
+            try {
+                EscolaEntity escola = escolaService.findById(aluno.getEscola().getId());
+                String codigoGerado = service.gerarCodigoEscola(escola, aluno.getUsuario().getCpf());
+
+                aluno.setEscola(escola);
+                aluno.setCodigoGeradoEscola(codigoGerado);
+
+                service.save(aluno);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(aluno);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
     
     @GetMapping("/aluno/escola/{id}")
-    public ResponseEntity<?> listarAlunosEscola(@PathVariable Long id){
-        try {
-            List<AlunoEntity> alunos = service.findByEscola(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(alunos);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível encontrar os alunos.");
+    public ResponseEntity<?> listarAlunosEscola(@RequestHeader("api-hash") String hash, @PathVariable Long id){
+        if(hash.isBlank() || hash.isEmpty()){
+            try {
+                List<AlunoEntity> alunos = service.findByEscola(id);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(alunos);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível encontrar os alunos.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
     
     @GetMapping("/aluno/{id}")
-    public ResponseEntity<?> buscarAlunoPorId(@PathVariable Long id){
-        try {
-            AlunoEntity aluno = service.findById(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(aluno);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível encontrar o aluno.");
+    public ResponseEntity<?> buscarAlunoPorId(@RequestHeader("api-hash") String hash, @PathVariable Long id){
+        if(hash.isBlank() || hash.isEmpty()){
+            try {
+                AlunoEntity aluno = service.findById(id);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(aluno);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível encontrar o aluno.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
     
     @PutMapping("/aluno/{id}")
-    public ResponseEntity<?> atualizarAlunoPorId(@PathVariable Long id, @RequestBody AlunoEntity aluno) {
-        try {
-            service.update(aluno);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(aluno);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Requisição inválida.");
+    public ResponseEntity<?> atualizarAlunoPorId(@RequestHeader("api-hash") String hash, @PathVariable Long id, @RequestBody AlunoEntity aluno) {
+        if(hash.isBlank() || hash.isEmpty()){
+            try {
+                service.update(aluno);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(aluno);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Requisição inválida.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
     
     @DeleteMapping("/aluno/{id}")
-    public ResponseEntity<?> removerAlunoPorId(@PathVariable Long id) {
-        try {
-            service.remove(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Boolean.TRUE);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
+    public ResponseEntity<?> removerAlunoPorId(@RequestHeader("api-hash") String hash, @PathVariable Long id) {
+        if(hash.isBlank() || hash.isEmpty()){
+            try {
+                service.remove(id);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(Boolean.TRUE);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Necessário enviar um identificador válido.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
 }

@@ -19,7 +19,7 @@ public class AlunoRepositoty extends BaseDAO<AlunoEntity, Long> {
     public List<AlunoEntity> findByEscola(Long escolaId) {
         TypedQuery<AlunoEntity> query = manager.createQuery("SELECT a FROM AlunoEntity a "
                 + "WHERE a.escola.id = :escola", AlunoEntity.class);
-            query.setParameter("escola", escolaId);
+        query.setParameter("escola", escolaId);
         return query.getResultList();
     }
 

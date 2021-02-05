@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "aviso")
@@ -47,6 +46,10 @@ public class AvisoEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_aluno_id", columnDefinition = "bigint", nullable = true)
     private AlunoEntity aluno;
+    
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_professor_id", columnDefinition = "bigint", nullable = true)
+    private ProfessorEntity professor;
 
     //GETTERS and SETTERS
     public Long getId() {
@@ -119,6 +122,14 @@ public class AvisoEntity implements Serializable {
 
     public void setAluno(AlunoEntity aluno) {
         this.aluno = aluno;
+    }
+
+    public ProfessorEntity getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(ProfessorEntity professor) {
+        this.professor = professor;
     }
     //END - GETTERS and SETTERS
 
