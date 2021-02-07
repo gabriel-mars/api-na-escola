@@ -23,16 +23,12 @@ public class EscolaController {
     private EscolaService service;
     
     @PostMapping("/escola")
-    public ResponseEntity<?> cadastrarEscola(@RequestHeader("api-hash") String hash, @RequestBody EscolaEntity escola){
-        if(hash.isBlank() || hash.isEmpty()){
-            try {
-                service.save(escola);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
+    public ResponseEntity<?> cadastrarEscola( @RequestBody EscolaEntity escola){
+        try {
+            service.save(escola);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
         }
     }
     
