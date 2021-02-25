@@ -16,7 +16,7 @@ public class ResponsavelEntity implements Serializable {
 
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "fk_user_id", columnDefinition = "bigint")
-    private UserEntity usuario;
+    private UsuarioEntity usuario;
 
     @Column(name = "foto", nullable = true, columnDefinition = "TEXT")
     private String foto;
@@ -30,11 +30,11 @@ public class ResponsavelEntity implements Serializable {
         this.id = id;
     }
 
-    public UserEntity getUsuario() {
+    public UsuarioEntity getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UserEntity usuario) {
+    public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 

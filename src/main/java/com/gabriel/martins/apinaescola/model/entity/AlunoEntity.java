@@ -49,7 +49,7 @@ public class AlunoEntity implements Serializable {
     
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "fk_user_id", columnDefinition = "bigint")
-    private UserEntity usuario;
+    private UsuarioEntity usuario;
     
     @Column(name = "situacao")
     @Enumerated(EnumType.STRING)
@@ -145,11 +145,11 @@ public class AlunoEntity implements Serializable {
         this.responsavel = responsavel;
     }
 
-    public UserEntity getUsuario() {
+    public UsuarioEntity getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UserEntity usuario) {
+    public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
     //END - GETTERS and SETTERS

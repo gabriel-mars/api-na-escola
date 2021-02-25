@@ -66,9 +66,9 @@ public class ProfessorService {
 
     public ProfessorEntity findById(Long id) { return repository.findById(id); }
 
-    public ProfessorEntity findByLogin(String codigoGerado, String senha) {
+    public ProfessorEntity findByLogin(String email, String senha) {
         senha = SecurityGeneric.getSecurePassword(senha);
-        return repository.findByLogin(codigoGerado, senha);
+        return repository.findByLogin(email, senha);
     }
 
     @Transactional(readOnly = true)

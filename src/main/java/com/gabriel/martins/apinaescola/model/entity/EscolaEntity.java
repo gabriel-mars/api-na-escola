@@ -49,10 +49,17 @@ public class EscolaEntity implements Serializable {
 
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "fk_user_id", columnDefinition = "bigint")
-    private UserEntity diretor;
+    private UsuarioEntity diretor;
     
     @Column(name = "hash", length = 150)
     private String hash;
+
+    public EscolaEntity(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public EscolaEntity() {}
 
     // GETTERS and SETTERS
     public Long getId() {
@@ -95,11 +102,11 @@ public class EscolaEntity implements Serializable {
         this.senha = senha;
     }
 
-    public UserEntity getDiretor() {
+    public UsuarioEntity getDiretor() {
         return diretor;
     }
 
-    public void setDiretor(UserEntity diretor) {
+    public void setDiretor(UsuarioEntity diretor) {
         this.diretor = diretor;
     }
 

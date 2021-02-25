@@ -4,16 +4,16 @@ import com.gabriel.martins.apinaescola.model.enums.TIPO_USUARIO;
 import com.google.gson.annotations.Expose;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-@Table(name = "user")
-public class UserEntity implements Serializable {
+@Table(name = "usuario")
+public class UsuarioEntity implements Serializable {
+    
     @Id
-    @SequenceGenerator(name = "generator", sequenceName = "seq_user_id", allocationSize = 1)
+    @SequenceGenerator(name = "generator", sequenceName = "seq_usuario_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
     @Basic(optional = false)
-    @Column(name = "id", nullable = false, columnDefinition = "BIGINT DEFAULT NEXTVAL('seq_user_id')")
+    @Column(name = "id", nullable = false, columnDefinition = "BIGINT DEFAULT NEXTVAL('seq_usuario_id')")
     private Long id;
 
     @Column(name = "cpf", nullable = false, length = 15)
@@ -153,9 +153,9 @@ public class UserEntity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserEntity)) return false;
+        if (!(o instanceof UsuarioEntity)) return false;
 
-        UserEntity that = (UserEntity) o;
+        UsuarioEntity that = (UsuarioEntity) o;
 
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
         if (getCpf() != null ? !getCpf().equals(that.getCpf()) : that.getCpf() != null) return false;

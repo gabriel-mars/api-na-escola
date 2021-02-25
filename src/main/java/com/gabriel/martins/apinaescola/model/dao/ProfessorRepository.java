@@ -15,10 +15,10 @@ public class ProfessorRepository extends BaseDAO<ProfessorEntity, Long>{
     private EntityManager manager;
     
     @SuppressWarnings("unchecked")
-    public ProfessorEntity findByLogin(String codigoGerado, String senha) {       
+    public ProfessorEntity findByLogin(String email, String senha) {       
         TypedQuery<ProfessorEntity> query = manager.createQuery("SELECT p FROM ProfessorEntity p "
-                + "WHERE p.codigoGeradoEscola = :codigo AND p.usuario.senha = :senha", ProfessorEntity.class);
-        query.setParameter("email", codigoGerado);
+                + "WHERE p.usuario.email = :email AND p.usuario.senha = :senha", ProfessorEntity.class);
+        query.setParameter("email", email);
         query.setParameter("senha", senha);
 
         return query.getSingleResult();

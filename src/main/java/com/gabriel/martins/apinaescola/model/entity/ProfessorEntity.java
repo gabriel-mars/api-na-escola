@@ -16,7 +16,7 @@ public class ProfessorEntity implements Serializable {
 
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "fk_user_id", columnDefinition = "bigint")
-    private UserEntity usuario;
+    private UsuarioEntity usuario;
 
     @Column(name = "codigo_gerado_escola", nullable = false, length = 8)
     private String codigoGeradoEscola;
@@ -28,6 +28,12 @@ public class ProfessorEntity implements Serializable {
     @Column(name = "senha_gerada", nullable = false)
     private String senhaGerada;
 
+    public ProfessorEntity(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    public ProfessorEntity() {}
+
     // GETTERS and SETTERS
     public Long getId() {
         return id;
@@ -37,11 +43,11 @@ public class ProfessorEntity implements Serializable {
         this.id = id;
     }
 
-    public UserEntity getUsuario() {
+    public UsuarioEntity getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UserEntity usuario) {
+    public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 

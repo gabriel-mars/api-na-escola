@@ -42,36 +42,40 @@ public class EmailSchedule {
     public void verificarEmailSenha() {
         EmailEntity email = buscarEmailSenha();
 
-        emailFactory.sendMailSenhaEscola(email);
-
-        finalizarEmail(email);
+        if(email != null){
+            emailFactory.sendMailSenhaEscola(email);
+            finalizarEmail(email);
+        }
     }
 
     @Scheduled(fixedDelay = VINTE_MINUTOS)
     public void verificarEmailSenhaProfessor() {
         EmailEntity email = buscarEmailSenhaProfessor();
 
-        emailFactory.sendMailSenhaProfessor(email);
-
-        finalizarEmail(email);
+        if(email != null){
+            emailFactory.sendMailSenhaProfessor(email);
+            finalizarEmail(email);
+        }
     }
 
     @Scheduled(fixedDelay = DEZ_MINUTOS)
     public void verificarEmailCadastroProfessor() {
         EmailEntity email = buscarEmailProfessor();
 
-        emailFactory.sendMailCadastroProfessor(email);
-
-        finalizarEmail(email);
+        if(email != null){
+            emailFactory.sendMailCadastroProfessor(email);
+            finalizarEmail(email);
+        }
     }
 
     @Scheduled(fixedDelay = CINCO_MINUTOS)
     public void verificarEmailCadastroEscola() {
         EmailEntity email = buscarEmailEscola();
 
-        emailFactory.sendMail(email);
-
-        finalizarEmail(email);
+        if(email != null){
+            emailFactory.sendMail(email);
+            finalizarEmail(email);
+        }
     }
 
     private EmailEntity buscarEmailEscola() {
@@ -79,9 +83,13 @@ public class EmailSchedule {
         EmailEntity email = new EmailEntity();
 
         emails = service.buscarPorNaoEnviadaEscola();
-        email = emails.get(0);
-
-        return email;
+        
+        if (emails == null || emails.isEmpty()) {
+            return null;
+        } else {
+            email = emails.get(0);
+            return email;
+        }
     }
 
     private EmailEntity buscarEmailSenha() {
@@ -89,9 +97,13 @@ public class EmailSchedule {
         EmailEntity email = new EmailEntity();
 
         emails = service.buscarPorNaoEnviadaSenhaEscola();
-        email = emails.get(0);
-
-        return email;
+        
+        if (emails == null || emails.isEmpty()) {
+            return null;
+        } else {
+            email = emails.get(0);
+            return email;
+        }
     }
 
     private EmailEntity buscarEmailSenhaProfessor() {
@@ -99,9 +111,13 @@ public class EmailSchedule {
         EmailEntity email = new EmailEntity();
 
         emails = service.buscarPorNaoEnviadaSenhaProfessor();
-        email = emails.get(0);
-
-        return email;
+        
+        if (emails == null || emails.isEmpty()) {
+            return null;
+        } else {
+            email = emails.get(0);
+            return email;
+        }
     }
 
     public EmailEntity buscarEmailDuvida() {
@@ -110,7 +126,7 @@ public class EmailSchedule {
 
         emails = service.buscarPorNaoEnviada();
 
-        if (emails == null) {
+        if (emails == null || emails.isEmpty()) {
             return null;
         } else {
             email = emails.get(0);
@@ -123,9 +139,13 @@ public class EmailSchedule {
         EmailEntity email = new EmailEntity();
 
         emails = service.buscarPorNaoEnviadaProfessor();
-        email = emails.get(0);
-
-        return email;
+        
+        if (emails == null || emails.isEmpty()) {
+            return null;
+        } else {
+            email = emails.get(0);
+            return email;
+        }
     }
 
     public void finalizarEmail(EmailEntity email) {

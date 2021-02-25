@@ -48,4 +48,9 @@ public class ResponsavelService {
     public ResponsavelEntity buscarDadosResponsavel(String codigoAluno) {
         return repository.findDataResponsavel(codigoAluno);
     }
+    
+    public ResponsavelEntity findByLogin(String email, String senha) {
+        senha = SecurityGeneric.getSecurePassword(senha);
+        return repository.findByLogin(email, senha);
+    }
 }

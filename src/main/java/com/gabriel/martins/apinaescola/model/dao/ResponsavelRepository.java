@@ -21,4 +21,14 @@ public class ResponsavelRepository extends BaseDAO<ResponsavelEntity, Long> {
                 query.setParameter("codigo", codigoAluno);
         return query.getSingleResult();
     }
+    @SuppressWarnings("unchecked")
+    public ResponsavelEntity findByLogin(String email, String senha) {       
+        TypedQuery<ResponsavelEntity> query = manager.createQuery("SELECT r FROM ResponsavelEntity r "
+                + "WHERE r.usuario.email = :email AND r.usuario.senha = :senha", ResponsavelEntity.class);
+        query.setParameter("email", email);
+        query.setParameter("senha", senha);
+
+        return query.getSingleResult();
+    }
+    
 }
