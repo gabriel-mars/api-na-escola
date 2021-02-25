@@ -7,6 +7,7 @@ public enum TIPO_USUARIO {
     PEDAGOGA("Pedagogo(a)"),
     ASSISTENTE("Assistente"),
     SUPERVISOR("Supervisor(a)"),
+    RESPONSAVEL("Responsável"),
     ORIENTADOR("Orientador(a)");
 
     private String label;
