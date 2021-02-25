@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -29,7 +30,7 @@ public class AlunoController {
     private EscolaService escolaService;
     
     @PostMapping("/aluno")
-    public ResponseEntity<?> cadastrarAluno(@RequestHeader("api-hash") String hash, @RequestBody AlunoEntity aluno){
+    public ResponseEntity<?> cadastrarAluno(@RequestParam("hash") String hash, @RequestBody AlunoEntity aluno){
         if(hash.isBlank() || hash.isEmpty()){
             try {
                 EscolaEntity escola = escolaService.findById(aluno.getEscola().getId());
@@ -49,7 +50,7 @@ public class AlunoController {
     }
     
     @GetMapping("/aluno/escola/{id}")
-    public ResponseEntity<?> listarAlunosEscola(@RequestHeader("api-hash") String hash, @PathVariable Long id){
+    public ResponseEntity<?> listarAlunosEscola(@RequestParam("hash") String hash, @PathVariable Long id){
         if(hash.isBlank() || hash.isEmpty()){
             try {
                 List<AlunoEntity> alunos = service.findByEscola(id);
@@ -63,7 +64,7 @@ public class AlunoController {
     }
     
     @GetMapping("/aluno/{id}")
-    public ResponseEntity<?> buscarAlunoPorId(@RequestHeader("api-hash") String hash, @PathVariable Long id){
+    public ResponseEntity<?> buscarAlunoPorId(@RequestParam("hash") String hash, @PathVariable Long id){
         if(hash.isBlank() || hash.isEmpty()){
             try {
                 AlunoEntity aluno = service.findById(id);
@@ -77,7 +78,7 @@ public class AlunoController {
     }
     
     @PutMapping("/aluno/{id}")
-    public ResponseEntity<?> atualizarAlunoPorId(@RequestHeader("api-hash") String hash, @PathVariable Long id, @RequestBody AlunoEntity aluno) {
+    public ResponseEntity<?> atualizarAlunoPorId(@RequestParam("hash") String hash, @PathVariable Long id, @RequestBody AlunoEntity aluno) {
         if(hash.isBlank() || hash.isEmpty()){
             try {
                 service.update(aluno);
@@ -91,7 +92,7 @@ public class AlunoController {
     }
     
     @DeleteMapping("/aluno/{id}")
-    public ResponseEntity<?> removerAlunoPorId(@RequestHeader("api-hash") String hash, @PathVariable Long id) {
+    public ResponseEntity<?> removerAlunoPorId(@RequestParam("hash") String hash, @PathVariable Long id) {
         if(hash.isBlank() || hash.isEmpty()){
             try {
                 service.remove(id);
