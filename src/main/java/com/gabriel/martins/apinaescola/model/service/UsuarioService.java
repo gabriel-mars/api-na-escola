@@ -55,6 +55,10 @@ public class UsuarioService {
         senha = SecurityGeneric.getSecurePassword(senha);
         return repository.findByLogin(email, senha);
     }
+    
+    public UsuarioEntity findByHash(String hash) {
+        return repository.findByHash(hash);
+    }
 
     @Transactional(readOnly = true)
     public List<UsuarioEntity> buscarTodos() { return repository.findAll(); }

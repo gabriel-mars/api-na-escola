@@ -5,7 +5,6 @@
  */
 package com.gabriel.martins.apinaescola.model.dao;
 
-import com.gabriel.martins.apinaescola.model.entity.ProfessorEntity;
 import com.gabriel.martins.apinaescola.model.entity.UsuarioEntity;
 import com.gabriel.martins.apinaescola.model.utils.BaseDAO;
 import javax.persistence.EntityManager;
@@ -29,6 +28,15 @@ public class UsuarioRepository extends BaseDAO<UsuarioEntity, Long> {
                 + "WHERE u.email = :email AND u.senha = :senha", UsuarioEntity.class);
         query.setParameter("email", email);
         query.setParameter("senha", senha);
+
+        return query.getSingleResult();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public UsuarioEntity findByHash(String hash) {       
+        TypedQuery<UsuarioEntity> query = manager.createQuery("SELECT u FROM UsuarioEntity u "
+                + "WHERE u.hash = :hash", UsuarioEntity.class);
+        query.setParameter("hash", hash);
 
         return query.getSingleResult();
     }
