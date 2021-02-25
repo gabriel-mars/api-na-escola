@@ -35,7 +35,7 @@ public class AlunoController {
     
     @PostMapping("/aluno")
     public ResponseEntity<?> cadastrarAluno(@RequestParam("hash") String hash, @RequestBody AlunoEntity aluno){
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -60,7 +60,7 @@ public class AlunoController {
     
     @GetMapping("/aluno/escola/{id}")
     public ResponseEntity<?> listarAlunosEscola(@RequestParam("hash") String hash, @PathVariable Long id){
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -79,7 +79,7 @@ public class AlunoController {
     
     @GetMapping("/aluno/{id}")
     public ResponseEntity<?> buscarAlunoPorId(@RequestParam("hash") String hash, @PathVariable Long id){
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -98,7 +98,7 @@ public class AlunoController {
     
     @PutMapping("/aluno/{id}")
     public ResponseEntity<?> atualizarAlunoPorId(@RequestParam("hash") String hash, @PathVariable Long id, @RequestBody AlunoEntity aluno) {
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -117,7 +117,7 @@ public class AlunoController {
     
     @DeleteMapping("/aluno/{id}")
     public ResponseEntity<?> removerAlunoPorId(@RequestParam("hash") String hash, @PathVariable Long id) {
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){

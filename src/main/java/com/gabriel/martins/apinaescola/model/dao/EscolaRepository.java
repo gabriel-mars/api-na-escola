@@ -3,6 +3,7 @@ package com.gabriel.martins.apinaescola.model.dao;
 import com.gabriel.martins.apinaescola.model.entity.DiaLetivoEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
 import com.gabriel.martins.apinaescola.model.entity.RequisicaoEntity;
+import com.gabriel.martins.apinaescola.model.entity.UsuarioEntity;
 import com.gabriel.martins.apinaescola.model.utils.BaseDAO;
 import org.springframework.stereotype.Repository;
 
@@ -78,6 +79,14 @@ public class EscolaRepository extends BaseDAO<EscolaEntity, Long> {
         TypedQuery<DiaLetivoEntity> query = manager.createQuery("SELECT DL.id, DL.escola.id, DL.dia FROM DiaLetivoEntity DL "
                 + "WHERE DL.escola.id = :id", DiaLetivoEntity.class);
         query.setParameter("id", escolaId);
+
+        return query.getResultList();
+    }
+    
+    public List<EscolaEntity> findByUser(UsuarioEntity user) {
+        TypedQuery<EscolaEntity> query = manager.createQuery("SELECT e FROM EscolaEntity e "
+                + "WHERE e.diretor = :diretor", EscolaEntity.class);
+        query.setParameter("diretor", user);
 
         return query.getResultList();
     }

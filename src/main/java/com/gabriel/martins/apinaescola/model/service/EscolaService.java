@@ -6,6 +6,7 @@ import com.gabriel.martins.apinaescola.model.entity.DiaLetivoEntity;
 import com.gabriel.martins.apinaescola.model.entity.EmailEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
 import com.gabriel.martins.apinaescola.model.entity.RequisicaoEntity;
+import com.gabriel.martins.apinaescola.model.entity.UsuarioEntity;
 import com.gabriel.martins.apinaescola.model.utils.SecurityGeneric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,6 +100,11 @@ public class EscolaService {
         senhaAleatoria = SecurityGeneric.generateSecurityKey();
 
         return senhaAleatoria;
+    }
+    
+    @Transactional(readOnly = true)
+    public List<EscolaEntity> findByUser(UsuarioEntity user) {
+        return repository.findByUser(user);
     }
 
     @Transactional(readOnly = true)

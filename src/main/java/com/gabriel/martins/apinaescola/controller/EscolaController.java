@@ -29,18 +29,28 @@ public class EscolaController {
     private UsuarioService usuarioService;
     
     @PostMapping("/escola")
-    public ResponseEntity<?> cadastrarEscola(@RequestBody EscolaEntity escola){
-        try {
-            service.save(escola);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
+    public ResponseEntity<?> saveScholl(@RequestParam("hash") String hash, @RequestBody EscolaEntity escola){
+        if(hash.isBlank() || hash.isEmpty()){
+            try {
+                UsuarioEntity user = usuarioService.findByHash(hash);
+                if(user != null){
+                    escola.setDiretor(user);
+                    service.save(escola);
+                    return ResponseEntity.status(HttpStatus.ACCEPTED).body(escola);
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível cadastrar.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
     
     @PostMapping("/escola/login")
-    public ResponseEntity<?> loginEscola(@RequestParam("hash") String hash, @RequestBody EscolaEntity escola){
-        if(hash.isBlank() || hash.isEmpty()){
+    public ResponseEntity<?> loginSchool(@RequestParam("hash") String hash, @RequestBody EscolaEntity escola){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -59,7 +69,7 @@ public class EscolaController {
     
     @GetMapping("/escola/{id}")
     public ResponseEntity<?> findById(@RequestParam("hash") String hash, @PathVariable Long id) {
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -77,13 +87,12 @@ public class EscolaController {
     }
     
     @GetMapping("/escola/user")
-    public ResponseEntity<?> findAllByUser(@RequestParam("hash") String hash) {
-
+    public ResponseEntity<?> findByUser(@RequestParam("hash") String hash) {
         if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
-                    List<EscolaEntity> escolas = service.buscarTodos();
+                    List<EscolaEntity> escolas = service.findByUser(user);
                     return ResponseEntity.status(HttpStatus.ACCEPTED).body(escolas);
                 } else {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
@@ -97,8 +106,8 @@ public class EscolaController {
     }
 
     @DeleteMapping("/escola/{id}")
-    public ResponseEntity<?> deleteUserById(@RequestParam("hash") String hash, @PathVariable Long id) {
-        if(hash.isBlank() || hash.isEmpty()){
+    public ResponseEntity<?> deleteSchoolById(@RequestParam("hash") String hash, @PathVariable Long id) {
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -116,8 +125,8 @@ public class EscolaController {
     }
 
     @PutMapping("/escola/{id}")
-    public ResponseEntity<?> updateUserById(@RequestParam("hash") String hash, @PathVariable Long id, @RequestBody EscolaEntity escola) {
-        if(hash.isBlank() || hash.isEmpty()){
+    public ResponseEntity<?> updateSchoolById(@RequestParam("hash") String hash, @PathVariable Long id, @RequestBody EscolaEntity escola) {
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
