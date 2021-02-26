@@ -90,4 +90,26 @@ public class SecurityGeneric {
         
         return senhaAleatoria.toString();
     }
+    
+    public static String generateKeyAluno(Integer codigo, String cpf){
+        String inicioCpf;
+        String tmpValor = String.valueOf(codigo);
+        String securityKey = new String();
+        char[] letras = null;
+
+        // Quebra do código da escola nos 5 primeiros dígitos
+        for (int i = 3; i < tmpValor.length(); i++) {
+            securityKey = securityKey + tmpValor.substring(i, i+1);
+        }
+
+        // Quebra do CPF do usuário
+        letras = cpf.toCharArray();
+        inicioCpf = "" + letras[0];
+        inicioCpf = inicioCpf + letras[1];
+        inicioCpf = inicioCpf + letras[2];
+
+        securityKey = securityKey + inicioCpf;
+
+        return securityKey;
+    }
 }

@@ -2,7 +2,6 @@ package com.gabriel.martins.apinaescola.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "escola")
@@ -14,7 +13,7 @@ public class EscolaEntity implements Serializable {
     @Column(name = "id", nullable = false, columnDefinition = "BIGINT DEFAULT NEXTVAL('seq_escola_id')")
     private Long id;
 
-    @Column(name = "codigo_mec", nullable = false, unique = true)
+    @Column(name = "codigo_mec", nullable = false, unique = true, length = 10)
     private Integer codigoMec;
 
     @Column(name = "escola_nome", nullable = false, length = 50)
@@ -23,7 +22,7 @@ public class EscolaEntity implements Serializable {
     @Column(name = "email", nullable = false, unique = true, length = 50)
     private String email;
 
-    @Column(name = "senha", nullable = false, length = 50)
+    @Column(name = "senha", nullable = false, length = 100)
     private String senha;
 
     @Column(name = "telefone", length = 15)
@@ -44,7 +43,7 @@ public class EscolaEntity implements Serializable {
     @Column(name = "logo", length = 100)
     private String logo;
 
-    @Column(name = "confirmacao", nullable = false, length = 50)
+    @Column(name = "confirmacao", nullable = true, length = 100)
     private String confirmacao;
 
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})

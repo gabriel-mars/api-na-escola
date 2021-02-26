@@ -29,6 +29,10 @@ public class EscolaService {
     @Transactional(readOnly = false)
     public void save(EscolaEntity entity) throws Exception {
         try {
+            if(entity.getSenha() == null){
+                entity.setSenha(entity.getCodigoMec().toString());
+            }
+            
             entity.setSenha(SecurityGeneric.getSecurePassword(entity.getSenha()));
             entity.setHash(SecurityGeneric.getHashUser(entity.getCodigoMec().toString()));
             repository.save(entity);
@@ -38,6 +42,7 @@ public class EscolaService {
             email.setEmailEscola(entity.getEmail());
             email.setNomeEscola(entity.getNome());
             email.setCaracteristica("cadastro");
+            email.setEnviado(Boolean.FALSE);
 
             emailRepository.save(email);
         } catch (Exception e) {

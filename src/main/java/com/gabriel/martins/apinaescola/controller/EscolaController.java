@@ -30,7 +30,7 @@ public class EscolaController {
     
     @PostMapping("/escola")
     public ResponseEntity<?> saveScholl(@RequestParam("hash") String hash, @RequestBody EscolaEntity escola){
-        if(hash.isBlank() || hash.isEmpty()){
+        if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);
                 if(user != null){
@@ -124,8 +124,8 @@ public class EscolaController {
         }
     }
 
-    @PutMapping("/escola/{id}")
-    public ResponseEntity<?> updateSchoolById(@RequestParam("hash") String hash, @PathVariable Long id, @RequestBody EscolaEntity escola) {
+    @PutMapping("/escola")
+    public ResponseEntity<?> updateSchool(@RequestParam("hash") String hash, @RequestBody EscolaEntity escola) {
         if(!hash.isBlank() || !hash.isEmpty()){
             try {
                 UsuarioEntity user = usuarioService.findByHash(hash);

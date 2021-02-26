@@ -25,7 +25,7 @@ public class UsuarioEntity implements Serializable {
     @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "senha", length = 50)
+    @Column(name = "senha", length = 100)
     private String senha;
 
     @Column(name = "telefone", length = 15)

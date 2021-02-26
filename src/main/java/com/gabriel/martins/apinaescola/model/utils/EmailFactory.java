@@ -13,13 +13,13 @@ import java.util.Properties;
 @Service
 public class EmailFactory {
 
-    final String username = "naescolasoft@gmail.com";
-    final String password = "NaEscola@2021";
-    private String mailSMTPServer;
-    private String mailSMTPServerPort;
-    String to;
-    String message;
-    String subject;
+    private static final String USERNAME = "naescolasoft@gmail.com";
+    private static final String PASSWORD = "NaEscola@2021";
+    private final String mailSMTPServer;
+    private final String mailSMTPServerPort;
+    private String to;
+    private String message;
+    private String subject;
 
     EmailFactory() { //Para o GMAIL
         mailSMTPServer = "smtp.gmail.com";
@@ -40,7 +40,7 @@ public class EmailFactory {
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
         props.put("mail.smtp.auth", "true"); //ativa autenticacao
-        props.put("mail.smtp.user", username); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+        props.put("mail.smtp.user", USERNAME); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", mailSMTPServerPort); //porta
         props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
@@ -50,13 +50,13 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("[Não Responda] Pré-cadastro: Plataforma NaEscola");
 
@@ -91,13 +91,13 @@ public class EmailFactory {
     // Envio de e-mail no com uma dúvida de uma escola
     public void sendMailDuvida(EmailEntity email) {
         Properties props = new Properties();
-        to = username;
+        to = USERNAME;
 
         props.put("mail.transport.protocol", "smtp"); //define protocolo de envio como SMTP
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
         props.put("mail.smtp.auth", "true"); //ativa autenticacao
-        props.put("mail.smtp.user", username); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+        props.put("mail.smtp.user", USERNAME); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", mailSMTPServerPort); //porta
         props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
@@ -107,13 +107,13 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email.getEmailEscola()));
             message.setSubject("[Dúvida] NaEscola : " + email.getTituloDuvida());
@@ -154,7 +154,7 @@ public class EmailFactory {
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
         props.put("mail.smtp.auth", "true"); //ativa autenticacao
-        props.put("mail.smtp.user", username); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+        props.put("mail.smtp.user", USERNAME); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", mailSMTPServerPort); //porta
         props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
@@ -164,13 +164,13 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email.getEmailEscola()));
             message.setSubject("[Cadastro] Plataforma NaEscola");
@@ -213,7 +213,7 @@ public class EmailFactory {
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
         props.put("mail.smtp.auth", "true"); //ativa autenticacao
-        props.put("mail.smtp.user", username); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+        props.put("mail.smtp.user", USERNAME); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", mailSMTPServerPort); //porta
         props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
@@ -223,13 +223,13 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("[Restauração de senha] Plataforma NaEscola");
 
@@ -271,7 +271,7 @@ public class EmailFactory {
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host", mailSMTPServer); //server SMTP do GMAIL
         props.put("mail.smtp.auth", "true"); //ativa autenticacao
-        props.put("mail.smtp.user", username); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
+        props.put("mail.smtp.user", USERNAME); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", mailSMTPServerPort); //porta
         props.put("mail.smtp.socketFactory.port", mailSMTPServerPort); //mesma porta para o socket
@@ -281,13 +281,13 @@ public class EmailFactory {
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("[Restauração de senha] Plataforma NaEscola");
 
