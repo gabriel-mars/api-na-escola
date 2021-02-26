@@ -111,7 +111,7 @@ public class EscolaService {
     public List<EscolaEntity> findByUser(UsuarioEntity user) {
         return repository.findByUser(user);
     }
-
+    
     @Transactional(readOnly = true)
     public List<RequisicaoEntity> buscarRequisicoes(Long id) { return repository.findRequisicoes(id); }
 

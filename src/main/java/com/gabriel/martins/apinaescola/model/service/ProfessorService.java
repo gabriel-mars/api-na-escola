@@ -73,4 +73,8 @@ public class ProfessorService {
 
     @Transactional(readOnly = true)
     public List<ProfessorEntity> buscarTodos() { return repository.findAll(); }
+
+    public List<ProfessorEntity> findByEscola(Long id) {
+        return repository.findByEscola(id);
+    }
 }

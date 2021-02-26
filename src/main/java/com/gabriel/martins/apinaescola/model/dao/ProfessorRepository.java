@@ -26,7 +26,7 @@ public class ProfessorRepository extends BaseDAO<ProfessorEntity, Long>{
 
     @SuppressWarnings("unchecked")
     public List<ProfessorEntity> findByEscola(Long escolaId) {
-        TypedQuery<ProfessorEntity> query = manager.createQuery("SELECT p.id, p.usuario.nome FROM ProfessorEntity p "
+        TypedQuery<ProfessorEntity> query = manager.createQuery("SELECT p FROM ProfessorEntity p "
                 + "WHERE p.escola.id = :escola", ProfessorEntity.class);
         query.setParameter("escola", escolaId);
 
