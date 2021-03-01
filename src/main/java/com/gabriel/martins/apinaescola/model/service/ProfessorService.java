@@ -3,6 +3,7 @@ package com.gabriel.martins.apinaescola.model.service;
 import com.gabriel.martins.apinaescola.model.dao.EmailRepository;
 import com.gabriel.martins.apinaescola.model.dao.EscolaRepository;
 import com.gabriel.martins.apinaescola.model.dao.ProfessorRepository;
+import com.gabriel.martins.apinaescola.model.dao.UsuarioRepository;
 import com.gabriel.martins.apinaescola.model.entity.EmailEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
 import com.gabriel.martins.apinaescola.model.entity.ProfessorEntity;
@@ -22,7 +23,7 @@ public class ProfessorService {
     private ProfessorRepository repository;
     
     @Autowired
-    private EscolaRepository escolaRepository;
+    private UsuarioRepository userRepository;
 
     @Autowired
     private EmailRepository emailRepository;
@@ -30,23 +31,25 @@ public class ProfessorService {
     @Transactional(readOnly = false)
     public void save(ProfessorEntity entity) throws Exception {
         try {
-            EscolaEntity escola = escolaRepository.findById(entity.getEscola().getId());
             
+            entity.getUsuario().setSenha(SecurityGeneric.gerarSenhaAleatoria());
             entity.getUsuario().setSenha(SecurityGeneric.getSecurePassword(entity.getUsuario().getSenha()));
             entity.getUsuario().setHash(SecurityGeneric.getHashUser(entity.getUsuario().getCpf()));
-            entity.setEscola(escola);
+            entity.setSenhaGerada(entity.getUsuario().getSenha());
             
+            userRepository.save(entity.getUsuario());
             repository.save(entity);
 
             EmailEntity email = new EmailEntity();
             email.setCodigoProfessor(SecurityGeneric.generateSecurityKey());
-            email.setSenhaProfessor(SecurityGeneric.gerarSenhaAleatoria());
+            email.setSenhaProfessor(entity.getUsuario().getSenha());
             email.setEmailProfessor(entity.getUsuario().getEmail());
-            email.setEmailEscola(escola.getEmail());
-            email.setNomeEscola(escola.getNome());
+            email.setEmailEscola(entity.getEscola().getEmail());
+            email.setNomeEscola(entity.getEscola().getNome());
             email.setNomeProfessor(entity.getUsuario().getNome());
-            email.setCodigoMec(escola.getCodigoMec());
+            email.setCodigoMec(entity.getEscola().getCodigoMec());
             email.setCaracteristica("cadastro");
+            email.setEnviado(Boolean.FALSE);
 
             emailRepository.save(email);
         } catch (Exception e) {
