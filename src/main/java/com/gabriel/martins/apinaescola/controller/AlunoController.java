@@ -48,10 +48,9 @@ public class AlunoController {
                     String codigoGerado = service.gerarCodigoEscola(escola, aluno.getUsuario().getCpf());
                     ResponsavelEntity responsavel = responsavelService.findByEmail(aluno.getResponsavel().getUsuario().getEmail());
 
-                    if(responsavel == null) 
-                        responsavelService.salvar(responsavel);
-                        
-                    aluno.setResponsavel(responsavel);
+                    if(responsavel != null) 
+                        aluno.setResponsavel(responsavel);
+                    
                     aluno.setEscola(escola);
                     aluno.setCodigoGeradoEscola(codigoGerado);
 
