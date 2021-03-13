@@ -59,6 +59,11 @@ public class ProfessorService {
 
     @Transactional(readOnly = false)
     public void update(ProfessorEntity entity) throws Exception { 
+        repository.update(entity);
+    }
+    
+    @Transactional(readOnly = false)
+    public void updateSenha(ProfessorEntity entity) throws Exception { 
         String senha = SecurityGeneric.getSecurePassword(entity.getUsuario().getSenha());
         entity.getUsuario().setSenha(senha);
         repository.update(entity);

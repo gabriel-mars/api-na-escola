@@ -131,4 +131,23 @@ public class ProfessorController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
         }
     }
+    
+    @PutMapping("/professor")
+    public ResponseEntity<?> updateSenhaProfessor(@RequestParam("hash") String hash, @RequestBody ProfessorEntity professor) {
+        if(!hash.isBlank() || !hash.isEmpty()){
+            try {
+                UsuarioEntity user = usuarioService.findByHash(hash);
+                if(user != null){
+                    service.updateSenha(professor);
+                    return ResponseEntity.status(HttpStatus.ACCEPTED).body(professor);
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Requisição inválida.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
+        }
+    }
 }
