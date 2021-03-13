@@ -2,14 +2,15 @@ package com.gabriel.martins.apinaescola.model.enums;
 
 public enum TIPO_USUARIO {
     ESCOLA("Escola"),
-    DIRETOR("Diretor (a)"),
-    PROFESSOR("Professor (a)"),
+    DIRETOR("Diretor(a)"),
+    PROFESSOR("Professor(a)"),
     SECRETARIA("Secretário(a)"),
     PEDAGOGA("Pedagogo(a)"),
     ASSISTENTE("Assistente"),
     SUPERVISOR("Supervisor(a)"),
     RESPONSAVEL("Responsável"),
-    ORIENTADOR("Orientador(a)");
+    ORIENTADOR("Orientador(a)"),
+    ALUNO("Aluno(a)");
 
     private String label;
 

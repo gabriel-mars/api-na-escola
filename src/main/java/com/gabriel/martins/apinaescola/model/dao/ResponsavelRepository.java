@@ -1,6 +1,7 @@
 package com.gabriel.martins.apinaescola.model.dao;
 
 import com.gabriel.martins.apinaescola.model.entity.ResponsavelEntity;
+import com.gabriel.martins.apinaescola.model.enums.TIPO_USUARIO;
 import com.gabriel.martins.apinaescola.model.utils.BaseDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,7 @@ public class ResponsavelRepository extends BaseDAO<ResponsavelEntity, Long> {
                 query.setParameter("codigo", codigoAluno);
         return query.getSingleResult();
     }
+    
     @SuppressWarnings("unchecked")
     public ResponsavelEntity findByLogin(String email, String senha) {       
         TypedQuery<ResponsavelEntity> query = manager.createQuery("SELECT r FROM ResponsavelEntity r "
@@ -31,4 +33,14 @@ public class ResponsavelRepository extends BaseDAO<ResponsavelEntity, Long> {
         return query.getSingleResult();
     }
     
+    @SuppressWarnings("unchecked")
+    public ResponsavelEntity findByEmail(String email) {       
+        TypedQuery<ResponsavelEntity> query = manager.createQuery("SELECT R FROM ResponsavelEntity R "
+                + "INNER JOIN UsuarioEntity U on U.id = R.usuario.id "
+                + "WHERE R.usuario.email = :email AND R.usuario.tipo = :tipo", ResponsavelEntity.class);
+        query.setParameter("email", email);
+        query.setParameter("tipo", TIPO_USUARIO.RESPONSAVEL);
+
+        return query.getSingleResult();
+    }
 }

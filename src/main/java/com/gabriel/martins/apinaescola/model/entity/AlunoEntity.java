@@ -44,7 +44,7 @@ public class AlunoEntity implements Serializable {
     private EscolaEntity escola;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_responsavel_id", columnDefinition = "bigint")
+    @JoinColumn(name = "fk_responsavel_id", columnDefinition = "bigint", nullable = true)
     private ResponsavelEntity responsavel;
     
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})

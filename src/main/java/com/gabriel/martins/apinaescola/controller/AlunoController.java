@@ -2,9 +2,11 @@ package com.gabriel.martins.apinaescola.controller;
 
 import com.gabriel.martins.apinaescola.model.entity.AlunoEntity;
 import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
+import com.gabriel.martins.apinaescola.model.entity.ResponsavelEntity;
 import com.gabriel.martins.apinaescola.model.entity.UsuarioEntity;
 import com.gabriel.martins.apinaescola.model.service.AlunoService;
 import com.gabriel.martins.apinaescola.model.service.EscolaService;
+import com.gabriel.martins.apinaescola.model.service.ResponsavelService;
 import com.gabriel.martins.apinaescola.model.service.UsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class AlunoController {
     @Autowired
     private UsuarioService usuarioService;
     
+    @Autowired
+    private ResponsavelService responsavelService;
+    
     @PostMapping("/aluno")
     public ResponseEntity<?> cadastrarAluno(@RequestParam("hash") String hash, @RequestBody AlunoEntity aluno){
         if(!hash.isBlank() || !hash.isEmpty()){
@@ -41,7 +46,12 @@ public class AlunoController {
                 if(user != null){
                     EscolaEntity escola = escolaService.findById(aluno.getEscola().getId());
                     String codigoGerado = service.gerarCodigoEscola(escola, aluno.getUsuario().getCpf());
+                    ResponsavelEntity responsavel = responsavelService.findByEmail(aluno.getResponsavel().getUsuario().getEmail());
 
+                    if(responsavel == null) 
+                        responsavelService.salvar(responsavel);
+                        
+                    aluno.setResponsavel(responsavel);
                     aluno.setEscola(escola);
                     aluno.setCodigoGeradoEscola(codigoGerado);
 
@@ -90,6 +100,25 @@ public class AlunoController {
                 }
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível encontrar o aluno.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
+        }
+    }
+    
+    @GetMapping("/aluno/escola/{id}")
+    public ResponseEntity<?> buscarAlunoPorEscolaId(@RequestParam("hash") String hash, @PathVariable Long id){
+        if(!hash.isBlank() || !hash.isEmpty()){
+            try {
+                UsuarioEntity user = usuarioService.findByHash(hash);
+                if(user != null){
+                    List<AlunoEntity> alunos = service.findByEscola(id);
+                    return ResponseEntity.status(HttpStatus.ACCEPTED).body(alunos);
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível encontrar os alunos.");
             }
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Necessário autenticação.");

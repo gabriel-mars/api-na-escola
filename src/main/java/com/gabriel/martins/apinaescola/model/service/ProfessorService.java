@@ -1,11 +1,9 @@
 package com.gabriel.martins.apinaescola.model.service;
 
 import com.gabriel.martins.apinaescola.model.dao.EmailRepository;
-import com.gabriel.martins.apinaescola.model.dao.EscolaRepository;
 import com.gabriel.martins.apinaescola.model.dao.ProfessorRepository;
 import com.gabriel.martins.apinaescola.model.dao.UsuarioRepository;
 import com.gabriel.martins.apinaescola.model.entity.EmailEntity;
-import com.gabriel.martins.apinaescola.model.entity.EscolaEntity;
 import com.gabriel.martins.apinaescola.model.entity.ProfessorEntity;
 import com.gabriel.martins.apinaescola.model.utils.SecurityGeneric;
 import java.util.List;

@@ -17,6 +17,7 @@ public class ResponsavelService {
     
     @Transactional(readOnly = false)
     public void salvar(ResponsavelEntity responsavel) {
+        responsavel.getUsuario().setSenha(SecurityGeneric.gerarSenhaAleatoria());
         responsavel.getUsuario().setSenha(SecurityGeneric.getSecurePassword(responsavel.getUsuario().getSenha()));
         responsavel.getUsuario().setHash(SecurityGeneric.getHashUser(responsavel.getUsuario().getCpf()));
         repository.save(responsavel);
@@ -28,29 +29,21 @@ public class ResponsavelService {
     }
 
     @Transactional(readOnly = false)
-    public void excluir(Long id) {
-        repository.delete(id);
-    }
+    public void excluir(Long id) { repository.delete(id); }
 
     @Transactional(readOnly = false)
-    public void updateAluno(ResponsavelEntity responsavel) {
-        repository.update(responsavel);
-    }
+    public void updateAluno(ResponsavelEntity responsavel) { repository.update(responsavel); }
 
-    public ResponsavelEntity buscarPorId(Long id) {
-        return repository.findById(id); 
-    }
+    public ResponsavelEntity buscarPorId(Long id) { return repository.findById(id); }
 
-    public List<ResponsavelEntity> buscarTodos() {
-        return repository.findAll();
-    }
+    public List<ResponsavelEntity> buscarTodos() { return repository.findAll(); }
     
-    public ResponsavelEntity buscarDadosResponsavel(String codigoAluno) {
-        return repository.findDataResponsavel(codigoAluno);
-    }
+    public ResponsavelEntity buscarDadosResponsavel(String codigoAluno) { return repository.findDataResponsavel(codigoAluno); }
     
     public ResponsavelEntity findByLogin(String email, String senha) {
         senha = SecurityGeneric.getSecurePassword(senha);
         return repository.findByLogin(email, senha);
     }
+    
+    public ResponsavelEntity findByEmail(String email) { return repository.findByEmail(email); }
 }

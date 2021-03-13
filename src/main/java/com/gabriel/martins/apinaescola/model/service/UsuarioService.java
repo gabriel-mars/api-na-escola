@@ -56,9 +56,7 @@ public class UsuarioService {
         return repository.findByLogin(email, senha);
     }
     
-    public UsuarioEntity findByHash(String hash) {
-        return repository.findByHash(hash);
-    }
+    public UsuarioEntity findByHash(String hash) { return repository.findByHash(hash); }
 
     @Transactional(readOnly = true)
     public List<UsuarioEntity> buscarTodos() { return repository.findAll(); }
